@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- {{ ansible_managed }} -->
+<Server port="{{ confluence_server_port }}" shutdown="SHUTDOWN" debug="0">
+    <Service name="Tomcat-Standalone">
+        <Connector URIEncoding="UTF-8" acceptCount="10" connectionTimeout="20000" debug="0" enableLookups="false" maxThreads="48" minSpareThreads="10" port="{{ confluence_connector_port }}" protocol="org.apache.coyote.http11.Http11NioProtocol" redirectPort="8443"{% if confluence_proxy_name and confluence_scheme in ["http", "https"] %} proxyName="{{ confluence_proxy_name }}"{% if confluence_scheme == "http" %} scheme="http" proxyPort="80"{% elif confluence_scheme == "https" %} scheme="https" proxyPort="443" secure="true"{% endif %}{% endif %}/>
+        <Engine name="Standalone" defaultHost="localhost" debug="0">
+            <Host name="localhost" debug="0" appBase="webapps" unpackWARs="true" autoDeploy="false" startStopThreads="4">
+                <Context path="{{ confluence_context_path or '' }}" docBase="../confluence" debug="0" reloadable="false" useHttpOnly="true">
+                    <Manager pathname=""/>
+                    <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60"/>
+                </Context>
+                <Context path="${confluence.context.path}/synchrony-proxy" docBase="../synchrony-proxy" debug="0" reloadable="false" useHttpOnly="true">
+                    <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60"/>
+                </Context>
+            </Host>
+        </Engine>
+    </Service>
+</Server>

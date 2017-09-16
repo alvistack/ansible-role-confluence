@@ -1,2 +1,29 @@
 ---
-# defaults file for confluence
+
+# (c) Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+confluence_catalina: "/opt/atlassian/confluence"
+confluence_connector_port: "8080"
+confluence_context_path: ~
+confluence_group: "daemon"
+confluence_home: "/var/atlassian/application-data/confluence"
+confluence_jvm_maximum_memory: "768m"
+confluence_jvm_minimum_memory: "384m"
+confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+confluence_owner: "daemon"
+confluence_proxy_name: ~
+confluence_scheme: ~
+confluence_server_port: "8005"
+confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.4.0.tar.gz"

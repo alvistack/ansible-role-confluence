@@ -125,7 +125,7 @@ Role Variables
 <tr class="odd">
 <td>confluence_url</td>
 <td>no</td>
-<td><code>https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-core-7.5.0.tar.gz</code></td>
+<td><code>https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.4.0.tar.gz</code></td>
 <td></td>
 <td>URL for download archive</td>
 </tr>

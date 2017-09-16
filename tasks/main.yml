@@ -1,2 +1,87 @@
 ---
-# tasks file for confluence
+
+# (c) Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: include release specific variables
+  include_vars: "{{ loop_var }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+      paths: "../vars"
+      skip: "yes"
+  loop_control:
+    loop_var: "loop_var"
+  tags: confluence
+
+- name: include release specific tasks
+  include: "{{ loop_var }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+      paths: "."
+      skip: "yes"
+  loop_control:
+    loop_var: "loop_var"
+  tags: confluence
+
+- name: prepare files
+  file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { dest: "{{ confluence_catalina }}", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0755", state: "directory" }
+    - { dest: "{{ confluence_home }}", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0755", state: "directory" }
+  tags: confluence
+
+- name: unarchive package
+  shell: |
+    ARCHIVE="`mktemp -u`.tar.gz"
+    curl -sL {{ confluence_url }} > $ARCHIVE
+    tar zxf $ARCHIVE -C {{ confluence_catalina }} --strip-components=1
+    chown -Rf {{ confluence_owner }}:{{ confluence_group }} {{ confluence_catalina }}
+    rm -rf $ARCHIVE
+  args:
+    creates: "{{ confluence_catalina }}/bin/setenv.sh"
+  tags: confluence
+
+- name: copy templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: "etc/init.d/confluence.j2", dest: "/etc/init.d/confluence", owner: "root", group: "root", mode: "0755" }
+    - { src: "opt/atlassian/confluence/bin/setenv.sh.j2", dest: "{{ confluence_catalina }}/bin/setenv.sh", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0644" }
+    - { src: "opt/atlassian/confluence/conf/server.xml.j2", dest: "{{ confluence_catalina }}/conf/server.xml", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0644" }
+  tags: confluence
+
+- name: enable service
+  service:
+    name: "confluence"
+    enabled: "yes"
+  tags: confluence
