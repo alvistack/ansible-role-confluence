@@ -73,14 +73,14 @@ Role Variables
 <tr class="even">
 <td>confluence_jvm_maximum_memory</td>
 <td>no</td>
-<td><code>768m</code></td>
+<td><code>1024m</code></td>
 <td></td>
 <td>Confluence JVM maximum memory usage</td>
 </tr>
 <tr class="odd">
 <td>confluence_jvm_minimum_memory</td>
 <td>no</td>
-<td><code>384m</code></td>
+<td><code>1024m</code></td>
 <td></td>
 <td>Confluence JVM minimum memory usage</td>
 </tr>
