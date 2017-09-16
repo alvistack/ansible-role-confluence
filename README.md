@@ -45,7 +45,7 @@ Role Variables
 <tr class="even">
 <td>confluence_connector_port</td>
 <td>no</td>
-<td><code>8080</code></td>
+<td><code>8090</code></td>
 <td></td>
 <td>Confluence Apache Tomcat connector port</td>
 </tr>
@@ -118,7 +118,7 @@ Role Variables
 <tr class="even">
 <td>confluence_server_port</td>
 <td>no</td>
-<td><code>8005</code></td>
+<td><code>8000</code></td>
 <td></td>
 <td>Confluence Apache Tomcat server port</td>
 </tr>
