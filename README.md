@@ -1,5 +1,5 @@
 Ansible Role for Confluence
-=====================
+===========================
 
 [![Build Status](https://travis-ci.org/alvistack/ansible-role-confluence.svg?branch=master)](https://travis-ci.org/alvistack/ansible-role-confluence)
 [![GitHub tag](https://img.shields.io/github/tag/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence)
