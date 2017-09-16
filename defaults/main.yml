@@ -19,8 +19,8 @@ confluence_connector_port: "8080"
 confluence_context_path: ~
 confluence_group: "daemon"
 confluence_home: "/var/atlassian/application-data/confluence"
-confluence_jvm_maximum_memory: "768m"
-confluence_jvm_minimum_memory: "384m"
+confluence_jvm_maximum_memory: "1024m"
+confluence_jvm_minimum_memory: "1024m"
 confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
 confluence_owner: "daemon"
 confluence_proxy_name: ~
