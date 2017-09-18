@@ -4,6 +4,7 @@ Ansible Role for Confluence
 [![Build Status](https://travis-ci.org/alvistack/ansible-role-confluence.svg?branch=master)](https://travis-ci.org/alvistack/ansible-role-confluence)
 [![GitHub tag](https://img.shields.io/github/tag/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence/blob/master/LICENSE)
+[![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.confluence-blue.svg)](https://galaxy.ansible.com/alvistack/confluence)
 
 Ansible Role for Atlassian Confluence Installation.
 
