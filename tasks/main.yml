@@ -64,7 +64,7 @@
     chown -Rf {{ confluence_owner }}:{{ confluence_group }} {{ confluence_catalina }}
     rm -rf $ARCHIVE
   args:
-    creates: "{{ confluence_catalina }}/bin/setenv.sh"
+    creates: "{{ confluence_catalina }}/bin/start-confluence.sh"
   tags: confluence
 
 - name: copy templates
