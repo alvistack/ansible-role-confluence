@@ -15,7 +15,7 @@
 
 RUN_AS_USER={{ confluence_owner }}
 CATALINA_HOME={{ confluence_catalina }}
-PID_FILE={{ confluence_catalina }}/work/catalina.pid
+CATALINA_PID={{ confluence_catalina }}/work/catalina.pid
 
 start() {
     echo "Starting Confluence: "
@@ -38,8 +38,8 @@ stop() {
 }
 
 status() {
-    if [ -f $PID_FILE ]; then
-        PID=$(<$PID_FILE)
+    if [ -f $CATALINA_PID ]; then
+        PID=$(<$CATALINA_PID)
         if $(kill -0 "${PID:-}" 2> /dev/null); then
             echo "Confluence is running"
             exit 0
