@@ -26,6 +26,21 @@
     - role: ansible-role-apt
     - role: ansible-role-yum
     - role: ansible-role-java
+
+- hosts: all
+  remote_user: root
+  roles:
     - role: ansible-role-confluence
+      # Owner and group for Confluence.
+      confluence_owner: "daemon"
+      confluence_group: "daemon"
+      # Location for the $CONFLUENCE_HOME directory.
+      confluence_home: "/var/atlassian/application-data/confluence"
+      # Location for the $CONFLUENCE_CATALINA directory.
+      confluence_catalina: "/opt/atlassian/confluence"
+
+- hosts: all
+  remote_user: root
+  roles:
     - role: ansible-role-mariadb-connector-java
       mariadb_connector_java_dest: "/opt/atlassian/confluence/confluence/WEB-INF/lib/mariadb-connector-java.jar"

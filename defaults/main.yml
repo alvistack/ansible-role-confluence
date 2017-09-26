@@ -14,16 +14,34 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-confluence_catalina: "/opt/atlassian/confluence"
-confluence_connector_port: "8090"
-confluence_context_path: ~
-confluence_group: "daemon"
-confluence_home: "/var/atlassian/application-data/confluence"
-confluence_jvm_maximum_memory: "1024m"
-confluence_jvm_minimum_memory: "1024m"
-confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+# Owner and group for Confluence.
 confluence_owner: "daemon"
+confluence_group: "daemon"
+
+# Location for the $CONFLUENCE_HOME directory.
+confluence_home: "/var/atlassian/application-data/confluence"
+
+# Location for the $CONFLUENCE_CATALINA directory.
+confluence_catalina: "/opt/atlassian/confluence"
+
+# Confluence JVM minimal and maximum memory usage.
+confluence_jvm_minimum_memory: "1024m"
+confluence_jvm_maximum_memory: "1024m"
+
+# Confluence Apache Tomcat connector and server port.
+confluence_connector_port: "8090"
+confluence_server_port: "8000"
+
+# Context path for Confluence isntallation.
+confluence_context_path: ~
+
+# If Confluence running behide reverse proxy, setup `confluence_scheme` with whatever
+# `http` or `https`, and supply `confluence_proxy_name` with its domain name.
 confluence_proxy_name: ~
 confluence_scheme: ~
-confluence_server_port: "8000"
-confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.4.0.tar.gz"
+
+# Atlassian Support recommended JVM arguments.
+confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
+
+# URL for download Confluence archive.
+confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.4.1.tar.gz"
