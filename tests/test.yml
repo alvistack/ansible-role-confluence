@@ -38,9 +38,25 @@
       confluence_home: "/var/atlassian/application-data/confluence"
       # Location for the $CONFLUENCE_CATALINA directory.
       confluence_catalina: "/opt/atlassian/confluence"
+      # Confluence Apache Tomcat connector and server port.
+      confluence_connector_port: "8090"
+      confluence_server_port: "8000"
 
 - hosts: all
   remote_user: root
   roles:
     - role: ansible-role-mariadb-connector-java
       mariadb_connector_java_dest: "/opt/atlassian/confluence/confluence/WEB-INF/lib/mariadb-connector-java.jar"
+
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: service confluence start
+      service:
+        name: "confluence"
+        enabled: "yes"
+
+    - name: check port
+      wait_for:
+        port: "8090"
+        timeout: "300"
