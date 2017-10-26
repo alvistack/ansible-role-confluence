@@ -44,4 +44,4 @@ confluence_scheme: ~
 confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
 
 # URL for download Confluence archive.
-confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.4.2.tar.gz"
+confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.4.3.tar.gz"
