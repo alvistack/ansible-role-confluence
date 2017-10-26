@@ -58,7 +58,7 @@
 
 - name: unarchive package
   shell: |
-    ARCHIVE="`mktemp -u`.tar.gz"
+    ARCHIVE="`mktemp --suffix=tar.gz`"
     curl -sL {{ confluence_url }} > $ARCHIVE
     tar zxf $ARCHIVE -C {{ confluence_catalina }} --strip-components=1
     chown -Rf {{ confluence_owner }}:{{ confluence_group }} {{ confluence_catalina }}
