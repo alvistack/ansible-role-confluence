@@ -13,33 +13,43 @@
 #               Provide commands for manually starting and stopping Confluence.
 ### END INIT INFO
 
-RUN_AS_USER={{ confluence_owner }}
-CATALINA_HOME={{ confluence_catalina }}
-CATALINA_PID={{ confluence_catalina }}/work/catalina.pid
+CONFLUENCE_OWNER={{ confluence_owner }}
+CONFLUENCE_GROUP={{ confluence_group }}
+CONFLUENCE_HOME={{ confluence_home }}
+CONFLUENCE_CATALINA={{ confluence_catalina }}
+CONFLUENCE_CATALINA_PID={{ confluence_catalina }}/work/catalina.pid
 
 start() {
     echo "Starting Confluence: "
-    if [ "x$USER" != "x$RUN_AS_USER" ]; then
-        su -s /bin/bash $RUN_AS_USER -c "$CATALINA_HOME/bin/start-confluence.sh $@"
+
+    mkdir -p ${CONFLUENCE_HOME}
+    chmod -f 755 ${CONFLUENCE_HOME}
+    chown -Rf ${CONFLUENCE_OWNER}:${CONFLUENCE_GROUP} ${CONFLUENCE_HOME}
+
+    if [ "x${USER}" != "x${CONFLUENCE_OWNER}" ]; then
+        su -s /bin/bash ${CONFLUENCE_OWNER} -c "${CONFLUENCE_CATALINA}/bin/start-confluence.sh $@"
     else
-        $CATALINA_HOME/bin/start-confluence.sh $@
+        ${CONFLUENCE_CATALINA}/bin/start-confluence.sh $@
     fi
+
     echo "done."
 }
 
 stop() {
     echo "Shutting down Confluence: "
-    if [ "x$USER" != "x$RUN_AS_USER" ]; then
-        su -s /bin/bash $RUN_AS_USER -c "$CATALINA_HOME/bin/stop-confluence.sh $@"
+
+    if [ "x${USER}" != "x${CONFLUENCE_OWNER}" ]; then
+        su -s /bin/bash ${CONFLUENCE_OWNER} -c "${CONFLUENCE_CATALINA}/bin/stop-confluence.sh $@"
     else
-        $CATALINA_HOME/bin/stop-confluence.sh $@
+        ${CONFLUENCE_CATALINA}/bin/stop-confluence.sh $@
     fi
+
     echo "done."
 }
 
 status() {
-    if [ -f $CATALINA_PID ]; then
-        PID=$(<$CATALINA_PID)
+    if [ -f ${CONFLUENCE_CATALINA_PID} ]; then
+        PID=$(<${CONFLUENCE_CATALINA_PID})
         if $(kill -0 "${PID:-}" 2> /dev/null); then
             echo "Confluence is running"
             exit 0
@@ -53,6 +63,7 @@ status() {
     fi
 
     echo "Confluence is not running"
+
     exit 3
 }
 
