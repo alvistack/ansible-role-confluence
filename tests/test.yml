@@ -14,53 +14,46 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Use `gather_faces: no` to initialize Python on system that not yet
+# pre-installed with Python (e.g. Ubuntu 16.04 Cloud Image and Docker Image).
 - hosts: all
   remote_user: root
   gather_facts: no
   roles:
-    - role: ansible-role-python
+    - role: python
 
 - hosts: all
   remote_user: root
   roles:
-    - role: ansible-role-apt
-    - role: ansible-role-yum
-    - role: ansible-role-java
-
-- hosts: all
-  remote_user: root
-  roles:
-    - role: ansible-role-confluence
-      # Owner and group for Confluence.
-      confluence_owner: "daemon"
-      confluence_group: "daemon"
-      # Location for the $CONFLUENCE_HOME directory.
-      confluence_home: "/var/atlassian/application-data/confluence"
-      # Location for the $CONFLUENCE_CATALINA directory.
-      confluence_catalina: "/opt/atlassian/confluence"
-      # Confluence Apache Tomcat connector and server port.
-      confluence_connector_port: "8090"
-      confluence_server_port: "8000"
-
-- hosts: all
-  remote_user: root
-  roles:
-    - role: ansible-role-mariadb-connector-java
-      mariadb_connector_java_dest: "/opt/atlassian/confluence/confluence/WEB-INF/lib/mariadb-connector-java.jar"
+    - role: apt
+    - role: yum
+    - role: java
+      apt:
+        - { state: "latest", name: "openjdk-8-jdk" }
+      java_home: "/usr/lib/jvm/java-8-openjdk-amd64"
+      when: ansible_os_family | lower == 'debian'
+    - role: java
+      yum:
+        - { state: "latest", name: "java-1.8.0-openjdk" }
+      java_home: "/usr/lib/jvm/jre-openjdk"
+      when: ansible_os_family | lower == 'redhat'
+    - role: confluence
 
 - hosts: all
   remote_user: root
   tasks:
     - name: start servicec
       service:
-        name: "confluence"
-        state: "started"
+        name: confluence
+        state: started
+      changed_when: false
+      ignore_errors: yes
 
     - name: check port
       wait_for:
         port: "8090"
         timeout: "300"
-        delay: "180"
+        delay: "10"
       async: "300"
       poll: "10"
 
@@ -73,7 +66,8 @@
       async: "300"
       poll: "10"
       register: result
+      until: result.status == 200
 
     - name: check result
       fail:
-      when: "'Set up Confluence - Confluence' not in result.content"
+      when: "'confluence' not in result.content"

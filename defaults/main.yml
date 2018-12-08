@@ -14,34 +14,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Owner and group for Confluence.
-confluence_owner: "daemon"
-confluence_group: "daemon"
-
-# Location for the $CONFLUENCE_HOME directory.
-confluence_home: "/var/atlassian/application-data/confluence"
-
-# Location for the $CONFLUENCE_CATALINA directory.
-confluence_catalina: "/opt/atlassian/confluence"
-
-# Confluence JVM minimal and maximum memory usage.
+# JVM minimal and maximum memory usage.
 confluence_jvm_minimum_memory: "1024m"
 confluence_jvm_maximum_memory: "1024m"
 
-# Confluence Apache Tomcat connector and server port.
-confluence_connector_port: "8090"
-confluence_server_port: "8000"
-
-# Context path for Confluence isntallation.
-confluence_context_path: ~
-
-# If Confluence running behide reverse proxy, setup `confluence_scheme` with whatever
-# `http` or `https`, and supply `confluence_proxy_name` with its domain name.
-confluence_proxy_name: ~
-confluence_scheme: ~
+# Proxy and context path setup.
+confluence_catalina_connector_proxyname: ~
+confluence_catalina_connector_proxyport: ~
+confluence_catalina_connector_scheme: "http"
+confluence_catalina_connector_secure: "false"
+confluence_catalina_context_path: ~
 
 # Atlassian Support recommended JVM arguments.
 confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300"
 
-# URL for download Confluence archive.
-confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.7.0.tar.gz"
+# Session timeout.
+confluence_session_timeout: 60
+
+# URL for download archives.
+confluence_download_url: "http://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.13.0.tar.gz"
+mysql_jdbc_download_url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.13.tar.gz"
+postgresql_jdbc_download_url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"

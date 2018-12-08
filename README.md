@@ -1,5 +1,4 @@
-Ansible Role for Confluence
-===========================
+# Ansible Role for Confluence
 
 [![Travis](https://img.shields.io/travis/alvistack/ansible-role-confluence.svg)](https://travis-ci.org/alvistack/ansible-role-confluence)
 [![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence)
@@ -8,38 +7,31 @@ Ansible Role for Confluence
 
 Ansible Role for Atlassian Confluence Installation.
 
-Requirements
-------------
+## Requirements
 
-This role require Ansible 2.4 or higher.
+This role require Ansible 2.6 or higher.
 
-This role was designed for Ubuntu 14.04/16.04/17.10/18.04 or RHEL/CentOS 6/7.
+This role was designed for Ubuntu 16.04/18.04 or RHEL/CentOS 6/7.
 
-Role Variables
---------------
+## Role Variables
 
 [defaults/main.yml](defaults/main.yml)
 
-Dependencies
-------------
+## Dependencies
 
 [meta/main.yml](meta/main.yml)
 
-Example Playbook
-----------------
+## Example Playbook
 
 [tests/test.yml](tests/test.yml)
 
-License
--------
+## License
 
--   Code released under [Apache License 2.0](LICENSE)
--   Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
+  - Code released under [Apache License 2.0](LICENSE)
+  - Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
-Author Information
-------------------
+## Author Information
 
--   Wong Hoi Sing Edison
-    -   <https://twitter.com/hswong3i>
-    -   <https://github.com/hswong3i>
-
+  - Wong Hoi Sing Edison
+      - <https://twitter.com/hswong3i>
+      - <https://github.com/hswong3i>

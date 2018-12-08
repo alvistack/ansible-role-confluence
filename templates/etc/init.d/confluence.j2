@@ -13,11 +13,11 @@
 #               Provide commands for manually starting and stopping Confluence.
 ### END INIT INFO
 
-CONFLUENCE_OWNER={{ confluence_owner }}
-CONFLUENCE_GROUP={{ confluence_group }}
-CONFLUENCE_HOME={{ confluence_home }}
-CONFLUENCE_CATALINA={{ confluence_catalina }}
-CONFLUENCE_CATALINA_PID={{ confluence_catalina }}/work/catalina.pid
+CONFLUENCE_OWNER=${CONFLUENCE_OWNER:-daemon}
+CONFLUENCE_GROUP=${CONFLUENCE_GROUP:-daemon}
+CONFLUENCE_HOME=${CONFLUENCE_HOME:-/var/atlassian/application-data/confluence}
+CONFLUENCE_CATALINA=${CONFLUENCE_CATALINA:-/opt/atlassian/confluence}
+CONFLUENCE_CATALINA_PID=${CONFLUENCE_CATALINA}/work/catalina.pid
 
 start() {
     echo "Starting Confluence: "
@@ -69,14 +69,17 @@ status() {
 
 case "$1" in
     start)
-        start ${@:2}
+        shift
+        start $@
         ;;
     stop)
-        stop ${@:2}
+        shift
+        stop $@
         ;;
     restart)
-        stop ${@:2}
-        start ${@:2}
+        shift
+        stop $@
+        start $@
         ;;
     status)
         status
