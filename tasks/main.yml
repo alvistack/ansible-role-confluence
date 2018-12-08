@@ -44,44 +44,50 @@
     loop_var: "loop_var"
   tags: confluence
 
-- name: prepare files
+- name: prepare directories
   file:
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
-    state: "{{ item.state }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0755') }}"
+    state: "{{ item.state | default('directory') }}"
   with_items:
-    - { dest: "{{ confluence_catalina }}", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0755", state: "directory" }
-    - { dest: "{{ confluence_home }}", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0755", state: "directory" }
+    - { dest: "/opt/atlassian/confluence", owner: "daemon", group: "daemon" }
+    - { dest: "/var/atlassian/application-data/confluence", owner: "daemon", group: "daemon" }
   tags: confluence
 
 - name: unarchive package
   shell: |
-    ARCHIVE="`mktemp --suffix=tar.gz`"
-    curl -sL {{ confluence_url }} > $ARCHIVE
-    tar zxf $ARCHIVE -C {{ confluence_catalina }} --strip-components=1
-    chown -Rf {{ confluence_owner }}:{{ confluence_group }} {{ confluence_catalina }}
-    rm -rf $ARCHIVE
+    cd /opt/atlassian/confluence
+    curl -skL {{ confluence_download_url }} | tar zxf - --strip-components 1
+    cd /opt/atlassian/confluence/WEB-INF/lib
+    rm -rf *mysql*.jar
+    curl -skL {{ mysql_jdbc_download_url }} tar zxf - --strip-components 1 --wildcards "mysql*/*mysql*.jar"
+    cd /opt/atlassian/confluence/WEB-INF/lib
+    rm -rf *postgresql*.jar
+    curl -skL {{ postgresql_jdbc_download_url }} -O
+    chown -Rf daemon:daemon /opt/atlassian/confluence
   args:
-    creates: "{{ confluence_catalina }}/bin/start-confluence.sh"
+    creates: "/opt/atlassian/confluence/bin/start-confluence.sh"
   tags: confluence
 
 - name: copy templates
   template:
-    src: "{{ item.src }}"
+    src: "./templates{{ item.dest }}.j2"
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
   with_items:
-    - { src: "etc/init.d/confluence.j2", dest: "/etc/init.d/confluence", owner: "root", group: "root", mode: "0755" }
-    - { src: "opt/atlassian/confluence/bin/setenv.sh.j2", dest: "{{ confluence_catalina }}/bin/setenv.sh", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0644" }
-    - { src: "opt/atlassian/confluence/conf/server.xml.j2", dest: "{{ confluence_catalina }}/conf/server.xml", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0644" }
+    - { dest: "/etc/init.d/confluence", mode: "0755" }
+    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "daemon", group: "daemon", mode: "0755" }
+    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "daemon", group: "daemon" }
   tags: confluence
 
 - name: enable service
   service:
-    name: "confluence"
-    enabled: "yes"
+    name: confluence
+    enabled: yes
+  changed_when: false
+  ignore_errors: yes
   tags: confluence
