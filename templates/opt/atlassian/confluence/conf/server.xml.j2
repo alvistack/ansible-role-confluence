@@ -10,7 +10,8 @@
          ==============================================================================================================
         -->
         <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
-                   proxyName="${catalina.connector.proxyName}" proxyPort="${catalina.connector.proxyPort}" scheme="${catalina.connector.scheme}" secure="${catalina.connector.secure}"
+                   proxyName="${catalina.connector.proxyName}" proxyPort="${catalina.connector.proxyPort}"
+                   scheme="${catalina.connector.scheme}" secure="${catalina.connector.secure}"
                    maxThreads="48" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"/>
@@ -35,7 +36,7 @@
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
                    scheme="http" proxyName="<subdomain>.<domain>.com" proxyPort="80"/>
         -->
-
+        
         <!--
          ==============================================================================================================
          HTTPS - Direct connector with no proxy, for unproxied HTTPS access to Confluence.
