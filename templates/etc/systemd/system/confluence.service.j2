@@ -2,14 +2,19 @@
 
 [Unit]
 Description=Atlassian Confluence
-After=syslog.target
+After=syslog.target network.target
 
 [Service]
-User=daemon
-Group=daemon
 ExecStart=/opt/atlassian/confluence/bin/start-confluence.sh
 ExecStop=/opt/atlassian/confluence/bin/stop-confluence.sh
 PIDFile=/opt/atlassian/confluence/work/catalina.pid
+Type=forking
+User=daemon
+Group=daemon
+TimeoutStartSec=300
+TimeoutStopSec=300
+LimitNOFILE=2048
+LimitNPROC=2048
 
 [Install]
 WantedBy=multi-user.target

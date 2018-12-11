@@ -85,6 +85,18 @@
     - { dest: "/etc/systemd/system/confluence.service" }
     - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "daemon", group: "daemon", mode: "0755" }
     - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "daemon", group: "daemon" }
+  register: template_result
+  tags: confluence
+
+- name: systemctl daemon-reload
+  systemd:
+    name: confluence
+    daemon_reload: yes
+  when:
+    - ansible_service_mgr == 'systemd'
+    - template_result is changed
+  changed_when: false
+  ignore_errors: yes
   tags: confluence
 
 - name: enable service
