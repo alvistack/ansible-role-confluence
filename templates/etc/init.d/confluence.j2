@@ -23,7 +23,7 @@ start() {
     echo "Starting Confluence: "
 
     if [ "x${USER}" != "x${CONFLUENCE_OWNER}" ]; then
-        su -l -s /bin/bash ${CONFLUENCE_OWNER} -c "${CONFLUENCE_CATALINA}/bin/start-confluence.sh $@"
+        su -s /bin/bash ${CONFLUENCE_OWNER} -c "${CONFLUENCE_CATALINA}/bin/start-confluence.sh $@"
     else
         ${CONFLUENCE_CATALINA}/bin/start-confluence.sh $@
     fi
@@ -35,7 +35,7 @@ stop() {
     echo "Shutting down Confluence: "
 
     if [ "x${USER}" != "x${CONFLUENCE_OWNER}" ]; then
-        su -l -s /bin/bash ${CONFLUENCE_OWNER} -c "${CONFLUENCE_CATALINA}/bin/stop-confluence.sh $@"
+        su -s /bin/bash ${CONFLUENCE_OWNER} -c "${CONFLUENCE_CATALINA}/bin/stop-confluence.sh $@"
     else
         ${CONFLUENCE_CATALINA}/bin/stop-confluence.sh $@
     fi
