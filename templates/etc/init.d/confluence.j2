@@ -13,8 +13,8 @@
 #               Provide commands for manually starting and stopping Confluence.
 ### END INIT INFO
 
-CONFLUENCE_OWNER=${CONFLUENCE_OWNER:-daemon}
-CONFLUENCE_GROUP=${CONFLUENCE_GROUP:-daemon}
+CONFLUENCE_OWNER=${CONFLUENCE_OWNER:-confluence}
+CONFLUENCE_GROUP=${CONFLUENCE_GROUP:-confluence}
 CONFLUENCE_HOME=${CONFLUENCE_HOME:-/var/atlassian/application-data/confluence}
 CONFLUENCE_CATALINA=${CONFLUENCE_CATALINA:-/opt/atlassian/confluence}
 CONFLUENCE_CATALINA_PID=${CONFLUENCE_CATALINA}/work/catalina.pid
