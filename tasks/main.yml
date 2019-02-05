@@ -44,6 +44,26 @@
     loop_var: "loop_var"
   tags: confluence
 
+- name: groupadd
+  group:
+    name: "confluence"
+    gid: "68090"
+    system: true
+    state: "present"
+  tags: confluence
+
+- name: useradd
+  user:
+    name: "confluence"
+    group: "confluence"
+    uid: "68090"
+    home: "/var/atlassian/application-data/confluence"
+    shell: "/usr/sbin/nologin"
+    system: true
+    create_home: false
+    state: "present"
+  tags: confluence
+
 - name: prepare directories
   file:
     dest: "{{ item.dest }}"
@@ -53,11 +73,11 @@
     state: "{{ item.state | default('directory') }}"
   with_items:
     - { dest: "/etc/init.d" }
-    - { dest: "/etc/systemd/system" }
-    - { dest: "/opt/atlassian/confluence", owner: "daemon", group: "daemon" }
-    - { dest: "/opt/atlassian/confluence/bin", owner: "daemon", group: "daemon" }
-    - { dest: "/opt/atlassian/confluence/conf", owner: "daemon", group: "daemon" }
-    - { dest: "/var/atlassian/application-data/confluence", owner: "daemon", group: "daemon" }
+    - { dest: "/lib/systemd/system" }
+    - { dest: "/opt/atlassian/confluence", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence/bin", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence/conf", owner: "confluence", group: "confluence" }
+    - { dest: "/var/atlassian/application-data/confluence", owner: "confluence", group: "confluence" }
   tags: confluence
 
 - name: unarchive package
@@ -70,7 +90,7 @@
     cd /opt/atlassian/confluence/WEB-INF/lib
     rm -rf *postgresql*.jar
     curl -skL {{ postgresql_jdbc_download_url }} -O
-    chown -Rf daemon:daemon /opt/atlassian/confluence
+    chown -Rf confluence:confluence /opt/atlassian/confluence
   args:
     creates: "/opt/atlassian/confluence/bin/start-confluence.sh"
   tags: confluence
@@ -84,9 +104,9 @@
     mode: "{{ item.mode | default('0644') }}"
   with_items:
     - { dest: "/etc/init.d/confluence", mode: "0755" }
-    - { dest: "/etc/systemd/system/confluence.service" }
-    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "daemon", group: "daemon", mode: "0755" }
-    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "daemon", group: "daemon" }
+    - { dest: "/lib/systemd/system/confluence.service" }
+    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "confluence", group: "confluence", mode: "0755" }
+    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
   notify:
     - systemctl daemon-reload
   tags: confluence
@@ -100,9 +120,9 @@
     state: "{{ item.state | default('file') }}"
   with_items:
     - { dest: "/etc/init.d/confluence", mode: "0755" }
-    - { dest: "/etc/systemd/system/confluence.service" }
-    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "daemon", group: "daemon", mode: "0755" }
-    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "daemon", group: "daemon" }
+    - { dest: "/lib/systemd/system/confluence.service" }
+    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "confluence", group: "confluence", mode: "0755" }
+    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
   tags: confluence
 
 - name: enable service
