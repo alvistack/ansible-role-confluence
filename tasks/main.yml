@@ -47,7 +47,6 @@
 - name: groupadd
   group:
     name: "confluence"
-    gid: "68090"
     system: true
     state: "present"
   tags: confluence
@@ -56,7 +55,6 @@
   user:
     name: "confluence"
     group: "confluence"
-    uid: "68090"
     home: "/var/atlassian/application-data/confluence"
     shell: "/usr/sbin/nologin"
     system: true
