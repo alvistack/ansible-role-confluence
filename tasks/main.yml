@@ -80,6 +80,7 @@
 
 - name: unarchive package
   shell: |
+    set -o pipefail
     cd /opt/atlassian/confluence
     curl -skL {{ confluence_download_url }} | tar zxf - --strip-components=1
     cd /opt/atlassian/confluence/WEB-INF/lib
