@@ -91,7 +91,7 @@
     curl -skL {{ postgresql_jdbc_download_url }} -O
     chown -Rf confluence:confluence /opt/atlassian/confluence
   args:
-    executable: /bin/bash
+    executable: "/bin/bash"
     creates: "/opt/atlassian/confluence/bin/start-confluence.sh"
   tags: confluence
 
