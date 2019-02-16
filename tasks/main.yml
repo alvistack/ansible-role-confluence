@@ -80,6 +80,7 @@
 
 - name: unarchive package
   shell: |
+    set -o pipefail
     cd /opt/atlassian/confluence
     curl -skL {{ confluence_download_url }} | tar zxf - --strip-components=1
     cd /opt/atlassian/confluence/WEB-INF/lib
@@ -90,6 +91,7 @@
     curl -skL {{ postgresql_jdbc_download_url }} -O
     chown -Rf confluence:confluence /opt/atlassian/confluence
   args:
+    executable: "/bin/bash"
     creates: "/opt/atlassian/confluence/bin/start-confluence.sh"
   tags: confluence
 
