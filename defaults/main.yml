@@ -32,6 +32,15 @@ confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -X
 confluence_session_timeout: 60
 
 # URL for download archives.
-confluence_download_url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.1.tar.gz"
-mysql_jdbc_download_url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.14.tar.gz"
-postgresql_jdbc_download_url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
+confluence_download:
+  url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.1.tar.gz"
+  dest: "/tmp/atlassian-confluence-6.15.1.tar.gz"
+  checksum: "sha1:b038fbd4d0524cfb8e2c7cf5135d754cafcbb003"
+mysql_jdbc_download:
+  url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.14.tar.gz"
+  dest: "/tmp/mysql-connector-java-8.0.14.tar.gz"
+  checksum: "sha1:ac684534f948b312ac2e3e5d9adfe28c05d62a5a"
+postgresql_jdbc_download:
+  url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
+  dest: "/tmp/postgresql-42.2.5.jar"
+  checksum: "sha1:951b7eda125f3137538a94e2cbdcf744088ad4c2"
