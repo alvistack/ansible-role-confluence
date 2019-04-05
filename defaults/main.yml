@@ -33,9 +33,9 @@ confluence_session_timeout: 60
 
 # URL for download archives.
 confluence_download:
-  url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.1.tar.gz"
-  dest: "/tmp/atlassian-confluence-6.15.1.tar.gz"
-  checksum: "sha1:b038fbd4d0524cfb8e2c7cf5135d754cafcbb003"
+  url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.2.tar.gz"
+  dest: "/tmp/atlassian-confluence-6.15.2.tar.gz"
+  checksum: "sha1:c46d7df2d767763bb05a22792adbf0abc5db839b"
 mysql_jdbc_download:
   url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.15.tar.gz"
   dest: "/tmp/mysql-connector-java-8.0.15.tar.gz"
