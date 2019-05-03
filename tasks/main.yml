@@ -96,10 +96,10 @@
     set -o pipefail
     cd /opt/atlassian/confluence
     tar zxf {{ confluence_download.dest }} --strip-components=1
-    cd /opt/atlassian/confluence/WEB-INF/lib
+    cd /opt/atlassian/confluence/confluence/WEB-INF/lib
     rm -rf *mysql*.jar
     tar zxf {{ mysql_jdbc_download.dest }} --strip-components=1 --wildcards "mysql*/*mysql*.jar"
-    cd /opt/atlassian/confluence/WEB-INF/lib
+    cd /opt/atlassian/confluence/confluence/WEB-INF/lib
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf confluence:confluence /opt/atlassian/confluence
