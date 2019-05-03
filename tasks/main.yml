@@ -75,6 +75,7 @@
     - { dest: "/opt/atlassian/confluence", owner: "confluence", group: "confluence" }
     - { dest: "/opt/atlassian/confluence/bin", owner: "confluence", group: "confluence" }
     - { dest: "/opt/atlassian/confluence/conf", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence/confluence/WEB-INF/classes", owner: "confluence", group: "confluence" }
     - { dest: "/var/atlassian/application-data/confluence", owner: "confluence", group: "confluence" }
   tags: confluence
 
@@ -120,6 +121,8 @@
     - { dest: "/lib/systemd/system/confluence.service" }
     - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "confluence", group: "confluence", mode: "0755" }
     - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence/confluence/WEB-INF/classes/crowd.properties", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence/confluence/WEB-INF/classes/seraph-config.xml", owner: "confluence", group: "confluence" }
   notify:
     - systemctl daemon-reload
   tags: confluence
@@ -136,6 +139,8 @@
     - { dest: "/lib/systemd/system/confluence.service" }
     - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "confluence", group: "confluence", mode: "0755" }
     - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence/confluence/WEB-INF/classes/crowd.properties", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence/confluence/WEB-INF/classes/seraph-config.xml", owner: "confluence", group: "confluence" }
   tags: confluence
 
 - name: enable service

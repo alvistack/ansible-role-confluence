@@ -31,6 +31,14 @@ confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -X
 # Session timeout.
 confluence_session_timeout: 60
 
+# Crowd SSO
+confluence_crowdsso_enabled: "false"
+confluence_crowdsso_appname: "username"
+confluence_crowdsso_apppass: "password"
+confluence_crowdsso_apploginurl: "http://localhost:8095/crowd/console/"
+confluence_crowdsso_crowdserverurl: "http://localhost:8095/crowd/services/"
+confluence_crowdsso_crowdbaseurl: "http://localhost:8095/crowd/"
+
 # URL for download archives.
 confluence_version: "6.15.3"
 confluence_download:
