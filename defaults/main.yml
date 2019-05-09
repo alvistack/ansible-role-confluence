@@ -32,6 +32,8 @@ confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -X
 confluence_session_timeout: 60
 
 # Crowd SSO
+# before enabling the Confluence instance has to be configured for Crowd!
+# see https://confluence.atlassian.com/crowd/integrating-crowd-with-atlassian-confluence-198573.html
 confluence_crowdsso_enabled: "false"
 confluence_crowdsso_appname: "username"
 confluence_crowdsso_apppass: "password"
