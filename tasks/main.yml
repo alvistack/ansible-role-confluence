@@ -138,6 +138,10 @@
     - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
   tags: confluence
 
+- name: flush handlers
+  meta: flush_handlers
+  tags: confluence
+
 - name: enable service
   service:
     name: confluence
