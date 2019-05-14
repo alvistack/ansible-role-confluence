@@ -121,7 +121,7 @@
     - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "confluence", group: "confluence", mode: "0755" }
     - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
   notify:
-    - systemctl daemon-reload
+    - confluence | systemctl daemon-reload
   tags: confluence
 
 - name: prepare files
