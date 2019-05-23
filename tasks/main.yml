@@ -107,6 +107,9 @@
   args:
     executable: "/bin/bash"
     creates: "/opt/atlassian/confluence/bin/start-confluence.sh"
+  notify:
+    - confluence | systemctl daemon-reload
+    - confluence | systemctl restart
   tags: confluence
 
 - name: copy templates
@@ -123,6 +126,7 @@
     - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
   notify:
     - confluence | systemctl daemon-reload
+    - confluence | systemctl restart
   tags: confluence
 
 - name: prepare files
@@ -137,6 +141,9 @@
     - { dest: "/lib/systemd/system/confluence.service" }
     - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "confluence", group: "confluence", mode: "0755" }
     - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
+  notify:
+    - confluence | systemctl daemon-reload
+    - confluence | systemctl restart
   tags: confluence
 
 - name: flush handlers
