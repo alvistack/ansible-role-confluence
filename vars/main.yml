@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _confluence_download:
+  6.15.5:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.5.tar.gz"
+    dest: "/tmp/atlassian-confluence-6.15.5.tar.gz"
+    checksum: "sha1:91de86a62cdc2f147d8a59ca1095d06df6e9e0bd"
   6.15.4:
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.4.tar.gz"
     dest: "/tmp/atlassian-confluence-6.15.4.tar.gz"
