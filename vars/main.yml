@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _confluence_download:
+  6.15.6:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.6.tar.gz"
+    dest: "/tmp/atlassian-confluence-6.15.6.tar.gz"
+    checksum: "sha1:b27cc000b00a4eeb49382cddd953c9ec711b1c47"
   6.15.5:
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.5.tar.gz"
     dest: "/tmp/atlassian-confluence-6.15.5.tar.gz"
@@ -43,6 +47,10 @@ _mysql_jdbc_download:
     checksum: "sha1:abf720d4e48fabcf677653a9f61993e093526616"
 
 _postgresql_jdbc_download:
+  42.2.6:
+    url: "https://jdbc.postgresql.org/download/postgresql-42.2.6.jar"
+    dest: "/tmp/postgresql-42.2.6.jar"
+    checksum: "sha1:58586d617d57746853fc0b8f37c83a8384fcd0ca"
   42.2.5:
     url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
     dest: "/tmp/postgresql-42.2.5.jar"
