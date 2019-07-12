@@ -80,6 +80,9 @@
     - { dest: "/opt/atlassian/confluence/bin", owner: "confluence", group: "confluence" }
     - { dest: "/opt/atlassian/confluence/conf", owner: "confluence", group: "confluence" }
     - { dest: "/var/atlassian/application-data/confluence", owner: "confluence", group: "confluence" }
+    - { dest: "{{ confluence_download.dest | dirname }}" }
+    - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
+    - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
   tags: confluence
 
 - name: download archive
