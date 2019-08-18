@@ -155,10 +155,8 @@
 
 - name: enable service
   service:
-    name: "{{ item.name }}"
+    name: "confluence"
     enabled: true
-  loop:
-    - { name: "confluence" }
   changed_when: false
   ignore_errors: true
   tags: confluence
