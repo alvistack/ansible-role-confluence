@@ -32,8 +32,8 @@
   tasks:
     - name: start servicec
       service:
-        name: confluence
-        state: started
+        name: "confluence"
+        state: "started"
       changed_when: false
       ignore_errors: true
 
