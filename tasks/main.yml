@@ -110,6 +110,7 @@
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf confluence:confluence /opt/atlassian/confluence
+    chmod 0755 /opt/atlassian/confluence /opt/atlassian/confluence/bin /opt/atlassian/confluence/conf
   args:
     executable: "/bin/bash"
   when: get_url_result is changed
