@@ -9,8 +9,8 @@ ExecStart=/opt/atlassian/confluence/bin/start-confluence.sh
 ExecStop=/opt/atlassian/confluence/bin/stop-confluence.sh
 PIDFile=/opt/atlassian/confluence/work/catalina.pid
 Type=forking
-User=confluence
-Group=confluence
+User={{ confluence_owner }}
+Group={{ confluence_group }}
 
 [Install]
 WantedBy=multi-user.target

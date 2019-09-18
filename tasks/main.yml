@@ -50,15 +50,15 @@
 
 - name: groupadd
   group:
-    name: "confluence"
+    name: "{{ confluence_group }}"
     system: true
     state: "present"
   tags: confluence
 
 - name: useradd
   user:
-    name: "confluence"
-    group: "confluence"
+    name: "{{ confluence_owner }}"
+    group: "{{ confluence_group }}"
     home: "/var/atlassian/application-data/confluence"
     shell: "/usr/sbin/nologin"
     system: true
@@ -76,10 +76,10 @@
   loop:
     - { dest: "/etc/init.d" }
     - { dest: "/lib/systemd/system" }
-    - { dest: "/opt/atlassian/confluence", owner: "confluence", group: "confluence" }
-    - { dest: "/opt/atlassian/confluence/bin", owner: "confluence", group: "confluence" }
-    - { dest: "/opt/atlassian/confluence/conf", owner: "confluence", group: "confluence" }
-    - { dest: "/var/atlassian/application-data/confluence", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
+    - { dest: "/opt/atlassian/confluence/bin", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
+    - { dest: "/opt/atlassian/confluence/conf", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
+    - { dest: "/var/atlassian/application-data/confluence", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
     - { dest: "{{ confluence_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
     - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
@@ -129,8 +129,8 @@
   loop:
     - { dest: "/etc/init.d/confluence", mode: "0755" }
     - { dest: "/lib/systemd/system/confluence.service" }
-    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "confluence", group: "confluence", mode: "0755" }
-    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
   notify:
     - confluence | systemctl daemon-reload
     - confluence | systemctl restart
@@ -146,8 +146,8 @@
   loop:
     - { dest: "/etc/init.d/confluence", mode: "0755" }
     - { dest: "/lib/systemd/system/confluence.service" }
-    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "confluence", group: "confluence", mode: "0755" }
-    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "confluence", group: "confluence" }
+    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0755" }
+    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
   tags: confluence
 
 - name: flush handlers
