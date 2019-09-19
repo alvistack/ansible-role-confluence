@@ -32,6 +32,16 @@ postgresql_jdbc_version: "42.2.8"
 # PostgreSQL JDBC download details.
 postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version] }}"
 
+# Owner and group for Confluence.
+confluence_owner: "confluence"
+confluence_group: "confluence"
+
+# Confluence home directory.
+confluence_home: "/var/atlassian/application-data/confluence"
+
+# Confluence installation directory.
+confluence_catalina: "/opt/atlassian/confluence"
+
 # JVM minimal and maximum memory usage.
 confluence_jvm_minimum_memory: "1024m"
 confluence_jvm_maximum_memory: "1024m"
@@ -44,7 +54,11 @@ confluence_catalina_connector_secure: "false"
 confluence_catalina_context_path: "/"
 
 # Atlassian Support recommended JVM arguments.
-confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
+confluence_jvm_support_recommended_args: >-
+  -Datlassian.plugins.enable.wait=300
+  -XX:+UnlockExperimentalVMOptions
+  -XX:+UseCGroupMemoryLimitForHeap
+  -XX:MaxRAMFraction=1
 
 # Session timeout.
-confluence_session_timeout: 60
+confluence_session_timeout: "300"

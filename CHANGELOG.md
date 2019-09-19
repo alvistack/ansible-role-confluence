@@ -4,6 +4,9 @@
 
 ### Major Changes
 
+  - Abstract `confluence_owner` and `confluence_group` as variable
+  - Abstract `confluence_home` and `confluence_catalina` as variable
+
 ## 3.4.0 - 2019-09-18
 
 ### Major Changes
