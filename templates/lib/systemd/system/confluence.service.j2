@@ -5,12 +5,12 @@ Description=Atlassian Confluence
 After=syslog.target network.target
 
 [Service]
-ExecStart={{ confluence_catalina }}/bin/start-confluence.sh
-ExecStop={{ confluence_catalina }}/bin/stop-confluence.sh
-PIDFile={{ confluence_catalina }}/work/catalina.pid
 Type=forking
 User={{ confluence_owner }}
 Group={{ confluence_group }}
+ExecStart={{ confluence_catalina }}/bin/start-confluence.sh
+ExecStop={{ confluence_catalina }}/bin/stop-confluence.sh
+PIDFile={{ confluence_catalina }}/work/catalina.pid
 
 [Install]
 WantedBy=multi-user.target

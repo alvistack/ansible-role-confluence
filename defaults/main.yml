@@ -54,7 +54,11 @@ confluence_catalina_connector_secure: "false"
 confluence_catalina_context_path: "/"
 
 # Atlassian Support recommended JVM arguments.
-confluence_jvm_support_recommended_args: "-Datlassian.plugins.enable.wait=300 -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1"
+confluence_jvm_support_recommended_args: >-
+  -Datlassian.plugins.enable.wait=300
+  -XX:+UnlockExperimentalVMOptions
+  -XX:+UseCGroupMemoryLimitForHeap
+  -XX:MaxRAMFraction=1
 
 # Session timeout.
-confluence_session_timeout: 60
+confluence_session_timeout: "300"

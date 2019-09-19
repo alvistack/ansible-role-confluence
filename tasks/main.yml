@@ -124,7 +124,10 @@
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
     chown -Rf confluence:confluence {{ confluence_catalina }}
-    chmod 0755 {{ confluence_catalina }} {{ confluence_catalina }}/bin {{ confluence_catalina }}/conf
+    chmod 0755 \
+      {{ confluence_catalina }} \
+      {{ confluence_catalina }}/bin \
+      {{ confluence_catalina }}/conf
   args:
     executable: "/bin/bash"
   when: get_url_result is changed
