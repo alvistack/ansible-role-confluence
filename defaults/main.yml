@@ -36,6 +36,12 @@ postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version]
 confluence_owner: "confluence"
 confluence_group: "confluence"
 
+# Confluence home directory.
+confluence_home: "/var/atlassian/application-data/confluence"
+
+# Confluence installation directory.
+confluence_catalina: "/opt/atlassian/confluence"
+
 # JVM minimal and maximum memory usage.
 confluence_jvm_minimum_memory: "1024m"
 confluence_jvm_maximum_memory: "1024m"

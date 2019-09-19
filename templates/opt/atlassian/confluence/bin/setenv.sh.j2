@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 
-CONFLUENCE_HOME="${CONFLUENCE_HOME:-"/var/atlassian/application-data/confluence"}"
-CONFLUENCE_CATALINA="${CONFLUENCE_CATALINA:-"/opt/atlassian/confluence"}"
+CONFLUENCE_HOME="${CONFLUENCE_HOME:-"{{ confluence_home }}"}"
+CONFLUENCE_CATALINA="${CONFLUENCE_CATALINA:-"{{ confluence_catalina }}"}"
 
 # See the CATALINA_OPTS below for tuning the JVM arguments used to start Confluence.
 

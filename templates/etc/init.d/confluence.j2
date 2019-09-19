@@ -15,8 +15,8 @@
 
 CONFLUENCE_OWNER=${CONFLUENCE_OWNER:-{{ confluence_owner }}}
 CONFLUENCE_GROUP=${CONFLUENCE_GROUP:-{{ confluence_group }}}
-CONFLUENCE_HOME=${CONFLUENCE_HOME:-/var/atlassian/application-data/confluence}
-CONFLUENCE_CATALINA=${CONFLUENCE_CATALINA:-/opt/atlassian/confluence}
+CONFLUENCE_HOME=${CONFLUENCE_HOME:-{{ confluence_home }}}
+CONFLUENCE_CATALINA=${CONFLUENCE_CATALINA:-{{ confluence_catalina }}}
 CONFLUENCE_CATALINA_PID=${CONFLUENCE_CATALINA}/work/catalina.pid
 
 start() {

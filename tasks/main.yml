@@ -59,7 +59,7 @@
   user:
     name: "{{ confluence_owner }}"
     group: "{{ confluence_group }}"
-    home: "/var/atlassian/application-data/confluence"
+    home: "{{ confluence_home }}"
     shell: "/usr/sbin/nologin"
     system: true
     create_home: false
@@ -76,13 +76,21 @@
   loop:
     - { dest: "/etc/init.d" }
     - { dest: "/lib/systemd/system" }
-    - { dest: "/opt/atlassian/confluence", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
-    - { dest: "/opt/atlassian/confluence/bin", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
-    - { dest: "/opt/atlassian/confluence/conf", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
-    - { dest: "/var/atlassian/application-data/confluence", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
     - { dest: "{{ confluence_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
     - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
+    - dest: "{{ confluence_catalina }}"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
+    - dest: "{{ confluence_catalina }}/bin"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
+    - dest: "{{ confluence_catalina }}/conf"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
+    - dest: "{{ confluence_home }}"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
   tags: confluence
 
 - name: download archive
@@ -101,16 +109,22 @@
 - name: unarchive package
   shell: |
     set -o pipefail
-    cd /opt/atlassian/confluence
-    TMP_DIR="`mktemp -d`" && tar -zx -C $TMP_DIR -f {{ confluence_download.dest }} && rsync -aq --delete $TMP_DIR/*/ . && rm -rf $TMP_DIR
-    cd /opt/atlassian/confluence/confluence/WEB-INF/lib
+    cd {{ confluence_catalina }}
+    TMP_DIR="`mktemp -d`" \
+      && tar -zx -C $TMP_DIR -f {{ confluence_download.dest }} \
+      && rsync -aq --delete $TMP_DIR/*/ . \
+      && rm -rf $TMP_DIR
+    cd {{ confluence_catalina }}/confluence/WEB-INF/lib
     rm -rf *mysql*.jar
-    TMP_DIR="`mktemp -d`" && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} && mv $TMP_DIR/*/*mysql*-bin.jar . && rm -rf $TMP_DIR
-    cd /opt/atlassian/confluence/confluence/WEB-INF/lib
+    TMP_DIR="`mktemp -d`" \
+      && tar -zx -C $TMP_DIR -f {{ mysql_jdbc_download.dest }} \
+      && mv $TMP_DIR/*/*mysql*-bin.jar . \
+      && rm -rf $TMP_DIR
+    cd {{ confluence_catalina }}/confluence/WEB-INF/lib
     rm -rf *postgresql*.jar
     cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf confluence:confluence /opt/atlassian/confluence
-    chmod 0755 /opt/atlassian/confluence /opt/atlassian/confluence/bin /opt/atlassian/confluence/conf
+    chown -Rf confluence:confluence {{ confluence_catalina }}
+    chmod 0755 {{ confluence_catalina }} {{ confluence_catalina }}/bin {{ confluence_catalina }}/conf
   args:
     executable: "/bin/bash"
   when: get_url_result is changed
@@ -129,8 +143,15 @@
   loop:
     - { dest: "/etc/init.d/confluence", mode: "0755" }
     - { dest: "/lib/systemd/system/confluence.service" }
-    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0755" }
-    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
+    - dest: "{{ confluence_catalina }}/bin/setenv.sh"
+      src: "./templates/opt/atlassian/confluence/bin/setenv.sh.j2"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
+      mode: "0755"
+    - dest: "{{ confluence_catalina }}/conf/server.xml"
+      src: "./templates/opt/atlassian/confluence/conf/server.xml.j2"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
   notify:
     - confluence | systemctl daemon-reload
     - confluence | systemctl restart
@@ -146,8 +167,13 @@
   loop:
     - { dest: "/etc/init.d/confluence", mode: "0755" }
     - { dest: "/lib/systemd/system/confluence.service" }
-    - { dest: "/opt/atlassian/confluence/bin/setenv.sh", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}", mode: "0755" }
-    - { dest: "/opt/atlassian/confluence/conf/server.xml", owner: "{{ confluence_owner }}", group: "{{ confluence_group }}" }
+    - dest: "{{ confluence_catalina }}/bin/setenv.sh"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
+      mode: "0755"
+    - dest: "{{ confluence_catalina }}/conf/server.xml"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
   tags: confluence
 
 - name: flush handlers

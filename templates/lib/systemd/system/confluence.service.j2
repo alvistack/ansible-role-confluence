@@ -5,9 +5,9 @@ Description=Atlassian Confluence
 After=syslog.target network.target
 
 [Service]
-ExecStart=/opt/atlassian/confluence/bin/start-confluence.sh
-ExecStop=/opt/atlassian/confluence/bin/stop-confluence.sh
-PIDFile=/opt/atlassian/confluence/work/catalina.pid
+ExecStart={{ confluence_catalina }}/bin/start-confluence.sh
+ExecStop={{ confluence_catalina }}/bin/stop-confluence.sh
+PIDFile={{ confluence_catalina }}/work/catalina.pid
 Type=forking
 User={{ confluence_owner }}
 Group={{ confluence_group }}
