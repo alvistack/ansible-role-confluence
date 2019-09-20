@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+  - Default with Python 3
+  - Revamp molecule test with vagrant
   - Abstract `confluence_owner` and `confluence_group` as variable
   - Abstract `confluence_home` and `confluence_catalina` as variable
 
