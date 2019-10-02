@@ -4,6 +4,7 @@
 
 ### Major Changes
 
+  - Support openSUSE Leap 15.1
   - Default with Python 3
   - Revamp molecule test with vagrant
   - Abstract `confluence_owner` and `confluence_group` as variable
