@@ -19,15 +19,19 @@
   become: true
   roles:
     - role: bootstrap
+    - role: locales
+    - role: timezone
     - role: python
-    - role: java
-      java_release: "8"
-    - role: confluence
 
 - hosts: all
   remote_user: root
   become: true
-  tasks:
+  roles:
+    - role: java
+      java_release: "8"
+    - role: confluence
+
+  post_tasks:
     - name: start servicec
       service:
         name: "confluence"
