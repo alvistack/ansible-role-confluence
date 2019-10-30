@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _confluence_download:
+  7.0.4:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.0.4.tar.gz"
+    dest: "/var/cache/ansible/atlassian-confluence-7.0.4.tar.gz"
+    checksum: "sha1:52409c5354dfc89e47d4d5804cc1783ff39589da"
   7.0.3:
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.0.3.tar.gz"
     dest: "/var/cache/ansible/atlassian-confluence-7.0.3.tar.gz"
