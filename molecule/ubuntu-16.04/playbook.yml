@@ -65,6 +65,3 @@
     - name: check result
       fail:
       when: "'confluence' not in result.content"
-      register: result
-      until: result is succeeded
-      retries: 30
