@@ -46,6 +46,9 @@
         delay: "10"
       async: "300"
       poll: "10"
+      register: result
+      until: result is succeeded
+      retries: 30
 
     - name: check page
       uri:
@@ -57,7 +60,11 @@
       poll: "10"
       register: result
       until: result.status == 200
+      retries: 30
 
     - name: check result
       fail:
       when: "'confluence' not in result.content"
+      register: result
+      until: result is succeeded
+      retries: 30
