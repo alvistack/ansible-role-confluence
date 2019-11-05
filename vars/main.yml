@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _confluence_download:
+  7.1.0:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.1.0.tar.gz"
+    dest: "/var/cache/ansible/atlassian-confluence-7.1.0.tar.gz"
+    checksum: "sha1:61f697862ff15d844923862f7cffc38f1c8bb816"
   7.0.4:
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.0.4.tar.gz"
     dest: "/var/cache/ansible/atlassian-confluence-7.0.4.tar.gz"
@@ -31,67 +35,15 @@ _confluence_download:
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.0.1.tar.gz"
     dest: "/var/cache/ansible/atlassian-confluence-7.0.1.tar.gz"
     checksum: "sha1:0d00c31736781a5f693212f0e666e9ae0fc0b9a2"
-  6.15.9:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.9.tar.gz"
-    dest: "/var/cache/ansible/atlassian-confluence-6.15.9.tar.gz"
-    checksum: "sha1:45d5032a71a68cc75571f84463dcd341cebd49e6"
-  6.15.8:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.8.tar.gz"
-    dest: "/var/cache/ansible/atlassian-confluence-6.15.8.tar.gz"
-    checksum: "sha1:582be8afbff54ff4bcb4ac7bd4a10bb6814a6168"
-  6.15.7:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.7.tar.gz"
-    dest: "/var/cache/ansible/atlassian-confluence-6.15.7.tar.gz"
-    checksum: "sha1:0a354191b7ba615ff2edc50711d99b37469d86d8"
-  6.15.6:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.6.tar.gz"
-    dest: "/var/cache/ansible/atlassian-confluence-6.15.6.tar.gz"
-    checksum: "sha1:b27cc000b00a4eeb49382cddd953c9ec711b1c47"
-  6.15.5:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.5.tar.gz"
-    dest: "/var/cache/ansible/atlassian-confluence-6.15.5.tar.gz"
-    checksum: "sha1:91de86a62cdc2f147d8a59ca1095d06df6e9e0bd"
-  6.15.4:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.4.tar.gz"
-    dest: "/var/cache/ansible/atlassian-confluence-6.15.4.tar.gz"
-    checksum: "sha1:d12b77cc66b684df5c97999d0a9f2923aa4ed351"
-  6.15.2:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.15.2.tar.gz"
-    dest: "/var/cache/ansible/atlassian-confluence-6.15.2.tar.gz"
-    checksum: "sha1:c46d7df2d767763bb05a22792adbf0abc5db839b"
-  6.14.3:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.14.3.tar.gz"
-    dest: "/var/cache/ansible/atlassian-confluence-6.14.3.tar.gz"
-    checksum: "sha1:cf058420f460409f15acf893848f15f0142fb531"
 
 _mysql_jdbc_download:
-  8.0.16:
-    url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.16.tar.gz"
-    dest: "/var/cache/ansible/mysql-connector-java-8.0.16.tar.gz"
-    checksum: "sha1:12a12227640d00c8e249b81c7818c12e4ad943ba"
   5.1.48:
     url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.48.tar.gz"
     dest: "/var/cache/ansible/mysql-connector-java-5.1.48.tar.gz"
     checksum: "sha1:a8067480d7d7e4a975771e08b48b64de18837341"
-  5.1.47:
-    url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.47.tar.gz"
-    dest: "/var/cache/ansible/mysql-connector-java-5.1.47.tar.gz"
-    checksum: "sha1:abf720d4e48fabcf677653a9f61993e093526616"
 
 _postgresql_jdbc_download:
   42.2.8:
     url: "https://jdbc.postgresql.org/download/postgresql-42.2.8.jar"
     dest: "/var/cache/ansible/postgresql-42.2.8.jar"
     checksum: "sha1:6f394c7df5600d11b221f356ff020440d2ece44f"
-  42.2.7:
-    url: "https://jdbc.postgresql.org/download/postgresql-42.2.7.jar"
-    dest: "/var/cache/ansible/postgresql-42.2.7.jar"
-    checksum: "sha1:8cae37cde4dd228f0137c58323d15e2885071b15"
-  42.2.6:
-    url: "https://jdbc.postgresql.org/download/postgresql-42.2.6.jar"
-    dest: "/var/cache/ansible/postgresql-42.2.6.jar"
-    checksum: "sha1:58586d617d57746853fc0b8f37c83a8384fcd0ca"
-  42.2.5:
-    url: "https://jdbc.postgresql.org/download/postgresql-42.2.5.jar"
-    dest: "/var/cache/ansible/postgresql-42.2.5.jar"
-    checksum: "sha1:951b7eda125f3137538a94e2cbdcf744088ad4c2"
