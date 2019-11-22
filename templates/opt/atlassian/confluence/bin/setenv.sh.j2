@@ -82,7 +82,7 @@ CATALINA_OPTS="-Dcatalina.connector.proxyPort=${CATALINA_CONNECTOR_PROXYPORT:-"{
 CATALINA_OPTS="-Dcatalina.connector.scheme=${CATALINA_CONNECTOR_SCHEME:-"{{ confluence_catalina_connector_scheme }}"} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dcatalina.connector.secure=${CATALINA_CONNECTOR_SECURE:-"{{ confluence_catalina_connector_secure }}"} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dcatalina.context.path=${CATALINA_CONTEXT_PATH:-"{{ confluence_catalina_context_path }}"} ${CATALINA_OPTS}"
-CATALINA_OPTS="-XX:ReservedCodeCacheSize=256m -XX:+UseCodeCacheFlushing ${CATALINA_OPTS}"
+CATALINA_OPTS="-XX:ReservedCodeCacheSize={{ confluence_jvm_Reserved_code_cache_size }} -XX:+UseCodeCacheFlushing ${CATALINA_OPTS}"
 
 
 export CATALINA_OPTS
