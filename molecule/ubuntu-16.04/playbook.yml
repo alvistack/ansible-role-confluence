@@ -32,7 +32,7 @@
     - role: confluence
 
   post_tasks:
-    - name: start servicec
+    - name: start service
       service:
         name: "confluence"
         state: "started"
