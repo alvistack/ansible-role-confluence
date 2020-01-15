@@ -110,10 +110,11 @@
 - name: unarchive package
   shell: |
     set -o pipefail
+    rm -rf {{ confluence_catalina }} && mkdir -p {{ confluence_catalina }}
     cd {{ confluence_catalina }}
     TMP_DIR="`mktemp -d`" \
       && tar -zx -C $TMP_DIR -f {{ confluence_download.dest }} \
-      && rsync -aq --delete $TMP_DIR/*/ . \
+      && cp -rfT $TMP_DIR/* . \
       && rm -rf $TMP_DIR
     cd {{ confluence_catalina }}/confluence/WEB-INF/lib
     rm -rf *mysql*.jar
