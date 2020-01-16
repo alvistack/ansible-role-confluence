@@ -110,7 +110,8 @@
 - name: unarchive package
   shell: |
     set -o pipefail
-    rm -rf {{ confluence_catalina }} && mkdir -p {{ confluence_catalina }}
+    rm -rf {{ confluence_catalina }} \
+      && mkdir -p {{ confluence_catalina }}
     cd {{ confluence_catalina }}
     TMP_DIR="`mktemp -d`" \
       && tar -zx -C $TMP_DIR -f {{ confluence_download.dest }} \
