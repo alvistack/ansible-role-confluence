@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Confluence version.
-confluence_version: "7.3.2"
+confluence_version: "7.3.3"
 
 # Confluence download details.
 confluence_download: "{{ _confluence_download[confluence_version] }}"
