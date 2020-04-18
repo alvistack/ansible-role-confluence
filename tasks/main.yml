@@ -185,7 +185,7 @@
   meta: flush_handlers
   tags: confluence
 
-- name: start service
+- name: systemctl start confluence
   service:
     name: "confluence"
     state: "started"
