@@ -181,10 +181,6 @@
       group: "{{ confluence_group }}"
   tags: confluence
 
-- name: flush handlers
-  meta: flush_handlers
-  tags: confluence
-
 - name: systemctl start confluence
   service:
     name: "confluence"
@@ -192,4 +188,8 @@
     enabled: true
   changed_when: false
   ignore_errors: true
+  tags: confluence
+
+- name: flush handlers
+  meta: flush_handlers
   tags: confluence
