@@ -20,7 +20,7 @@
   changed_when: false
   ignore_errors: true
 
-- name: confluence | systemctl restart
+- name: confluence | systemctl restart confluence
   service:
     name: "confluence"
     state: "restarted"
