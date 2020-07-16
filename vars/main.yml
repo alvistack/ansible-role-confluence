@@ -15,14 +15,26 @@
 # limitations under the License.
 
 _confluence_download:
+  7.6.1:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.6.1.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.6.1.tar.gz"
+    checksum: "sha1:89ff6e5da8a603de3566a835f38dffcf8c5ac511"
+  7.6.0:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.6.0.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.6.0.tar.gz"
+    checksum: "sha1:7fe7e49213d058d69430da2a32ee2f195ddf11eb"
+  7.5.2:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.5.2.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.5.2.tar.gz"
+    checksum: "sha1:b5e2d2e8848ce8e03901912c1f18c5506ca37c58"
+  7.5.1:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.5.1.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.5.1.tar.gz"
+    checksum: "sha1:53b611bf2119702aa1eb5a7cbed5aeb9dd4cf601"
   7.5.0:
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.5.0.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.5.0.tar.gz"
     checksum: "sha1:24d17eccf1c1555bfd8f2800f099a6fc1eb80f1f"
-  7.4.0:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.4.0.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.4.0.tar.gz"
-    checksum: "sha1:de93afe68a5334962cb83aab0842535848c5059a"
 
 _mysql_jdbc_download:
   5.1.49:
@@ -31,7 +43,7 @@ _mysql_jdbc_download:
     checksum: "sha1:ed8f8574585edfb630b0b6ee4ebf6f6847795c0f"
 
 _postgresql_jdbc_download:
-  42.2.12:
-    url: "https://jdbc.postgresql.org/download/postgresql-42.2.12.jar"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/postgresql-42.2.12.jar"
-    checksum: "sha1:1ed5b5f16a67f312a50d420e8bcb7d30b40b033d"
+  42.2.14:
+    url: "https://jdbc.postgresql.org/download/postgresql-42.2.14.jar"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/postgresql-42.2.14.jar"
+    checksum: "sha1:45fa6eef266aa80024ef2ab3688d9faa38c642e5"
