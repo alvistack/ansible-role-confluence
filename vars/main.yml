@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _confluence_download:
+  7.6.2:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.6.2.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.6.2.tar.gz"
+    checksum: "sha1:1be4f6df53eb4d1c2e3eaf7dcdddc934327111a7"
   7.6.1:
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.6.1.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.6.1.tar.gz"
