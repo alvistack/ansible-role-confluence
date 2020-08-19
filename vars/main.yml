@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _confluence_download:
+  7.7.2:
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.7.2.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.7.2.tar.gz"
+    checksum: "sha1:73c40b3363004cb16ad65145eb369632e9988963"
   7.6.2:
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.6.2.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.6.2.tar.gz"
@@ -27,18 +31,6 @@ _confluence_download:
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.6.0.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.6.0.tar.gz"
     checksum: "sha1:7fe7e49213d058d69430da2a32ee2f195ddf11eb"
-  7.5.2:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.5.2.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.5.2.tar.gz"
-    checksum: "sha1:b5e2d2e8848ce8e03901912c1f18c5506ca37c58"
-  7.5.1:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.5.1.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.5.1.tar.gz"
-    checksum: "sha1:53b611bf2119702aa1eb5a7cbed5aeb9dd4cf601"
-  7.5.0:
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.5.0.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.5.0.tar.gz"
-    checksum: "sha1:24d17eccf1c1555bfd8f2800f099a6fc1eb80f1f"
 
 _mysql_jdbc_download:
   5.1.49:
