@@ -20,9 +20,9 @@
   changed_when: false
   ignore_errors: true
 
-- name: confluence | systemctl restart confluence
+- name: confluence | systemctl restart confluence.service
   service:
-    name: "confluence"
+    name: "confluence.service"
     state: "restarted"
     enabled: true
   loop: "{{ ansible_play_hosts }}"
