@@ -75,6 +75,7 @@
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: "/lib/systemd/system" }
+    - { dest: "/lib/systemd/system/confluence.service.d" }
     - { dest: "{{ confluence_download.dest | dirname }}" }
     - { dest: "{{ mysql_jdbc_download.dest | dirname }}" }
     - { dest: "{{ postgresql_jdbc_download.dest | dirname }}" }
@@ -138,7 +139,7 @@
   when: get_url_result is changed
   notify:
     - confluence | systemctl daemon-reload
-    - confluence | systemctl restart confluence
+    - confluence | systemctl restart confluence.service
   tags: confluence
 
 - name: copy templates
@@ -161,7 +162,7 @@
       group: "{{ confluence_group }}"
   notify:
     - confluence | systemctl daemon-reload
-    - confluence | systemctl restart confluence
+    - confluence | systemctl restart confluence.service
   tags: confluence
 
 - name: prepare files
@@ -182,9 +183,9 @@
       group: "{{ confluence_group }}"
   tags: confluence
 
-- name: systemctl start confluence
+- name: systemctl start confluence.service
   service:
-    name: "confluence"
+    name: "confluence.service"
     state: "started"
     enabled: true
   changed_when: false
