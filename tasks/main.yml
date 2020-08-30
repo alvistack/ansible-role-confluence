@@ -149,6 +149,7 @@
     owner: "{{ item.owner | default('root') }}"
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
+    backup: true
   loop:
     - { dest: "/lib/systemd/system/confluence.service" }
     - dest: "{{ confluence_catalina }}/bin/setenv.sh"
