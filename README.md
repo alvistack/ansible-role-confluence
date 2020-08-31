@@ -1,7 +1,7 @@
 # Ansible Role for Confluence
 
 [![Travis](https://img.shields.io/travis/com/alvistack/ansible-role-confluence.svg)](https://travis-ci.com/alvistack/ansible-role-confluence)
-[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence)
+[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.confluence-blue.svg)](https://galaxy.ansible.com/alvistack/confluence)
 
