@@ -16,7 +16,6 @@
 
 - name: include default variables
   include_vars: "../vars/main.yml"
-  tags: confluence
 
 - name: include release specific variables
   include_vars: "{{ lookup('first_found', _params) }}"
@@ -31,7 +30,6 @@
       paths:
         - "../vars"
   ignore_errors: true
-  tags: confluence
 
 - name: include release specific tasks
   include_tasks: "{{ lookup('first_found', _params) }}"
@@ -46,14 +44,12 @@
       paths:
         - "."
   ignore_errors: true
-  tags: confluence
 
 - name: groupadd
   group:
     name: "{{ confluence_group }}"
     system: true
     state: "present"
-  tags: confluence
 
 - name: useradd
   user:
@@ -64,7 +60,6 @@
     system: true
     create_home: false
     state: "present"
-  tags: confluence
 
 - name: prepare directories
   file:
@@ -91,7 +86,6 @@
     - dest: "{{ confluence_home }}"
       owner: "{{ confluence_owner }}"
       group: "{{ confluence_group }}"
-  tags: confluence
 
 - name: download archive
   vars:
@@ -108,7 +102,6 @@
     - "{{ postgresql_jdbc_download }}"
   register: get_url_result
   until: get_url_result is succeeded
-  tags: confluence
 
 - name: unarchive package
   shell: |
@@ -140,7 +133,6 @@
   notify:
     - confluence | systemctl daemon-reload
     - confluence | systemctl restart confluence.service
-  tags: confluence
 
 - name: copy templates
   template:
@@ -163,7 +155,6 @@
   notify:
     - confluence | systemctl daemon-reload
     - confluence | systemctl restart confluence.service
-  tags: confluence
 
 - name: prepare files
   file:
@@ -184,7 +175,6 @@
   notify:
     - confluence | systemctl daemon-reload
     - confluence | systemctl restart confluence.service
-  tags: confluence
 
 - name: systemctl start confluence.service
   service:
@@ -193,8 +183,6 @@
     enabled: true
   changed_when: false
   ignore_errors: true
-  tags: confluence
 
 - name: flush handlers
   meta: flush_handlers
-  tags: confluence
