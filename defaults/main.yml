@@ -43,8 +43,8 @@ confluence_home: "/var/atlassian/application-data/confluence"
 confluence_catalina: "/opt/atlassian/confluence"
 
 # JVM minimal and maximum memory usage.
-confluence_jvm_minimum_memory: "1024m"
-confluence_jvm_maximum_memory: "1024m"
+confluence_jvm_minimum_memory: "2048m"
+confluence_jvm_maximum_memory: "2048m"
 
 # Proxy and context path setup.
 confluence_catalina_connector_proxyname: ~
