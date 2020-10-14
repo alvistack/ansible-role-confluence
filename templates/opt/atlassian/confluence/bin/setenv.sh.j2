@@ -66,12 +66,9 @@ echo "--------------------------------------------------------------------------
 
 # Set the JVM arguments used to start Confluence. For a description of the options, see
 # http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html
-CATALINA_OPTS="-XX:-PrintGCDetails -XX:+PrintGCDateStamps -XX:-PrintTenuringDistribution ${CATALINA_OPTS}"
-CATALINA_OPTS="-Xloggc:$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2M ${CATALINA_OPTS}"
-CATALINA_OPTS="-XX:G1ReservePercent=20 ${CATALINA_OPTS}"
 CATALINA_OPTS="-Djava.awt.headless=true ${CATALINA_OPTS}"
 CATALINA_OPTS="${JVM_SUPPORT_RECOMMENDED_ARGS:-"{{ confluence_jvm_support_recommended_args }}"} ${CATALINA_OPTS}"
-CATALINA_OPTS="-Xms${JVM_MINIMUM_MEMORY:-"{{ confluence_jvm_minimum_memory }}"} -Xmx${JVM_MAXIMUM_MEMORY:-"{{ confluence_jvm_maximum_memory }}"} -XX:+UseG1GC ${CATALINA_OPTS}"
+CATALINA_OPTS="-Xms${JVM_MINIMUM_MEMORY:-"{{ confluence_jvm_minimum_memory }}"} -Xmx${JVM_MAXIMUM_MEMORY:-"{{ confluence_jvm_maximum_memory }}"} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dsynchrony.enable.xhr.fallback=true ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dorg.apache.tomcat.websocket.DEFAULT_BUFFER_SIZE=32768 ${CATALINA_OPTS}"
 CATALINA_OPTS="-Djava.locale.providers=COMPAT,SPI ${CATALINA_OPTS}"
