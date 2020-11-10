@@ -57,8 +57,8 @@ confluence_catalina_context_path: "/"
 confluence_jvm_support_recommended_args: >-
   -Datlassian.plugins.enable.wait=300
   -XX:+UnlockExperimentalVMOptions
-  -XX:+UseContainerSupport
-  -XX:+UseZGC
+  -XX:+UseCGroupMemoryLimitForHeap
+  -XX:MaxRAMFraction=1
 
 # Session timeout.
 confluence_session_timeout: "300"
