@@ -15,6 +15,14 @@
 # limitations under the License.
 
 _confluence_download:
+  "7.9.3":
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.9.3.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.9.3.tar.gz"
+    checksum: "sha1:dbd521bf8d4c9c8f7d45d3ed91582fd188c3b8bc"
+  "7.9.1":
+    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.9.1.tar.gz"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.9.1.tar.gz"
+    checksum: "sha1:b0d1d26b35c60bede03f166981b60335247d1401"
   "7.9.0":
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.9.0.tar.gz"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.9.0.tar.gz"
