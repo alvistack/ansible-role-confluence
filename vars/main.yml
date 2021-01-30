@@ -17,37 +17,37 @@
 _confluence_download:
   "7.10.2":
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.10.2.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.10.2.tar.gz"
-    checksum: "sha1:b47c397eca5700787287f21a0ba8b6546dc5aaea"
+    dest: "/var/cache/ansible/d1ee567727725189262367894a52a974a06e13415b99484c6dc3190259347785/atlassian-confluence-7.10.2.tar.gz"
+    checksum: "sha256:d1ee567727725189262367894a52a974a06e13415b99484c6dc3190259347785"
   "7.10.1":
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.10.1.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.10.1.tar.gz"
-    checksum: "sha1:c34340ca32a3bf482efd18cdf448845d8ede89d6"
+    dest: "/var/cache/ansible/49c1345179a8c476fb1ce26149f38b5e3dd66f7fd78ad16e391dfa224b668319/atlassian-confluence-7.10.1.tar.gz"
+    checksum: "sha256:49c1345179a8c476fb1ce26149f38b5e3dd66f7fd78ad16e391dfa224b668319"
   "7.10.0":
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.10.0.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.10.0.tar.gz"
-    checksum: "sha1:fb47e03cfc4414a323c7d40fcd26d5f8aae8dc2a"
+    dest: "/var/cache/ansible/4344e4793e963a44fc8cf3143db9cb09421cc1621d109a234b9e572198dfcf1d/atlassian-confluence-7.10.0.tar.gz"
+    checksum: "sha256:4344e4793e963a44fc8cf3143db9cb09421cc1621d109a234b9e572198dfcf1d"
   "7.9.3":
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.9.3.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.9.3.tar.gz"
-    checksum: "sha1:dbd521bf8d4c9c8f7d45d3ed91582fd188c3b8bc"
+    dest: "/var/cache/ansible/cd9600620f4be0ba9ae8a2d043e533490baec5838bec2fe6acff0fc63563c32f/atlassian-confluence-7.9.3.tar.gz"
+    checksum: "sha256:cd9600620f4be0ba9ae8a2d043e533490baec5838bec2fe6acff0fc63563c32f"
   "7.9.1":
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.9.1.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.9.1.tar.gz"
-    checksum: "sha1:b0d1d26b35c60bede03f166981b60335247d1401"
+    dest: "/var/cache/ansible/9bf250069cf60913fbe87f3edab5cccb8217340cd1bb11b2b493737dd1f62f71/atlassian-confluence-7.9.1.tar.gz"
+    checksum: "sha256:9bf250069cf60913fbe87f3edab5cccb8217340cd1bb11b2b493737dd1f62f71"
   "7.9.0":
     url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.9.0.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/atlassian-confluence-7.9.0.tar.gz"
-    checksum: "sha1:67d9a0b5c22e9a49f1e37a293e0f453296a7ed12"
+    dest: "/var/cache/ansible/90dab30525c86dc5333682e74f7ab8fccbf0f782553393aec0d5e8fff78e4178/atlassian-confluence-7.9.0.tar.gz"
+    checksum: "sha256:90dab30525c86dc5333682e74f7ab8fccbf0f782553393aec0d5e8fff78e4178"
 
 _mysql_jdbc_download:
   "5.1.49":
     url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.49.tar.gz"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/mysql-connector-java-5.1.49.tar.gz"
-    checksum: "sha1:ed8f8574585edfb630b0b6ee4ebf6f6847795c0f"
+    dest: "/var/cache/ansible/25dc7e687f58b2345176ecb8aff6ca87acd33bce5b2b3cc92dd0557806d16dca/mysql-connector-java-5.1.49.tar.gz"
+    checksum: "sha256:25dc7e687f58b2345176ecb8aff6ca87acd33bce5b2b3cc92dd0557806d16dca"
 
 _postgresql_jdbc_download:
   "42.2.18":
     url: "https://jdbc.postgresql.org/download/postgresql-42.2.18.jar"
-    dest: "{{ ansible_user_dir }}/.ansible/tmp/postgresql-42.2.18.jar"
-    checksum: "sha1:a0a9c1d43c7727eeaf1b729477891185d3c71751"
+    dest: "/var/cache/ansible/0c891979f1eb2fe44432da114d09760b5063dad9e669ac0ac6b0b6bfb91bb3ba/postgresql-42.2.18.jar"
+    checksum: "sha256:0c891979f1eb2fe44432da114d09760b5063dad9e669ac0ac6b0b6bfb91bb3ba"
