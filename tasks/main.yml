@@ -179,6 +179,20 @@
     - confluence | systemctl daemon-reload
     - confluence | systemctl restart confluence.service
 
+- name: patch {{ confluence_catalina }}/confluence/WEB-INF/web.xml
+  vars:
+    ansible_python_interpreter: "python3"
+  xml:
+    path: "{{ confluence_catalina }}/confluence/WEB-INF/web.xml"
+    xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
+    namespaces:
+      ns: "http://xmlns.jcp.org/xml/ns/javaee"
+    value: "{{ confluence_session_timeout | int }}"
+    state: "present"
+  notify:
+    - confluence | systemctl daemon-reload
+    - confluence | systemctl restart confluence.service
+
 - name: flush handlers
   meta: flush_handlers
 

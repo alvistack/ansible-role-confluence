@@ -2,8 +2,8 @@
 
 # {{ ansible_managed }}
 
-CONFLUENCE_HOME="${CONFLUENCE_HOME:-"{{ confluence_home }}"}"
-CONFLUENCE_CATALINA="${CONFLUENCE_CATALINA:-"{{ confluence_catalina }}"}"
+CONFLUENCE_HOME="{{ confluence_home }}"
+CONFLUENCE_CATALINA="{{ confluence_catalina }}"
 
 # See the CATALINA_OPTS below for tuning the JVM arguments used to start Confluence.
 
@@ -61,8 +61,6 @@ fi
 
 echo "---------------------------------------------------------------------------"
 echo "Using Java: $JRE_HOME/bin/java"
-CONFLUENCE_CONTEXT_PATH="${CATALINA_CONTEXT_PATH:-"{{ confluence_catalina_context_path }}"}"
-export CONFLUENCE_CONTEXT_PATH
 $JRE_HOME/bin/java -jar $CATALINA_HOME/bin/synchrony-proxy-watchdog.jar $CATALINA_HOME
 echo "---------------------------------------------------------------------------"
 
@@ -71,28 +69,33 @@ echo "--------------------------------------------------------------------------
 # http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html
 # For a description of the vm options of jdk 11, see:
 # https://docs.oracle.com/en/java/javase/11/tools/java.html
-CATALINA_OPTS="-XX:+IgnoreUnrecognizedVMOptions ${CATALINA_OPTS}"
-CATALINA_OPTS="-XX:-PrintGCDetails -XX:+PrintGCDateStamps -XX:-PrintTenuringDistribution ${CATALINA_OPTS}"
-CATALINA_OPTS="-Xlog:gc+age=debug:file=$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log::filecount=5,filesize=2M ${CATALINA_OPTS}"
-CATALINA_OPTS="-Xloggc:$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2M ${CATALINA_OPTS}"
-CATALINA_OPTS="-XX:G1ReservePercent=20 ${CATALINA_OPTS}"
-CATALINA_OPTS="-Djava.awt.headless=true ${CATALINA_OPTS}"
-CATALINA_OPTS="${JVM_SUPPORT_RECOMMENDED_ARGS:-"{{ confluence_jvm_support_recommended_args }}"} ${CATALINA_OPTS}"
-CATALINA_OPTS="-Xms${JVM_MINIMUM_MEMORY:-"{{ confluence_jvm_minimum_memory }}"} -Xmx${JVM_MAXIMUM_MEMORY:-"{{ confluence_jvm_maximum_memory }}"} -XX:+UseG1GC ${CATALINA_OPTS}"
-CATALINA_OPTS="-Dsynchrony.enable.xhr.fallback=true ${CATALINA_OPTS}"
-CATALINA_OPTS="-Dorg.apache.tomcat.websocket.DEFAULT_BUFFER_SIZE=32768 ${CATALINA_OPTS}"
-CATALINA_OPTS="-Djava.locale.providers=JRE,SPI,CLDR ${CATALINA_OPTS}"
-CATALINA_OPTS="${START_CONFLUENCE_JAVA_OPTS} ${CATALINA_OPTS}"
-CATALINA_OPTS="-Dconfluence.home=${CONFLUENCE_HOME} ${CATALINA_OPTS}"
-CATALINA_OPTS="-Dcatalina.connector.proxyName=${CATALINA_CONNECTOR_PROXYNAME:-"{{ confluence_catalina_connector_proxyname }}"} ${CATALINA_OPTS}"
-CATALINA_OPTS="-Dcatalina.connector.proxyPort=${CATALINA_CONNECTOR_PROXYPORT:-"{{ confluence_catalina_connector_proxyport }}"} ${CATALINA_OPTS}"
-CATALINA_OPTS="-Dcatalina.connector.scheme=${CATALINA_CONNECTOR_SCHEME:-"{{ confluence_catalina_connector_scheme }}"} ${CATALINA_OPTS}"
-CATALINA_OPTS="-Dcatalina.connector.secure=${CATALINA_CONNECTOR_SECURE:-"{{ confluence_catalina_connector_secure }}"} ${CATALINA_OPTS}"
-CATALINA_OPTS="-Dcatalina.context.path=${CATALINA_CONTEXT_PATH:-"{{ confluence_catalina_context_path }}"} ${CATALINA_OPTS}"
-CATALINA_OPTS="-Djdk.tls.server.protocols=TLSv1.1,TLSv1.2 -Djdk.tls.client.protocols=TLSv1.1,TLSv1.2 ${CATALINA_OPTS}"
-CATALINA_OPTS="-XX:ReservedCodeCacheSize=512m -XX:+UseCodeCacheFlushing ${CATALINA_OPTS}"
-
-
+CATALINA_OPTS=" \
+-XX:+IgnoreUnrecognizedVMOptions \
+-XX:-PrintGCDetails \
+-XX:+PrintGCDateStamps \
+-XX:-PrintTenuringDistribution \
+-Xlog:gc+age=debug:file=$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log::filecount=5,filesize=2M \
+-Xloggc:$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log \
+-XX:+UseGCLogFileRotation \
+-XX:NumberOfGCLogFiles=5 \
+-XX:GCLogFileSize=2M \
+-XX:G1ReservePercent=20 \
+-Djava.awt.headless=true \
+-Xms{{ confluence_jvm_minimum_memory }} \
+-Xmx{{ confluence_jvm_maximum_memory }} \
+-XX:+UseG1GC \
+-Dsynchrony.enable.xhr.fallback=true \
+-Dorg.apache.tomcat.websocket.DEFAULT_BUFFER_SIZE=32768 \
+-Djava.locale.providers=JRE,SPI,CLDR \
+${START_CONFLUENCE_JAVA_OPTS} \
+-Djdk.tls.server.protocols=TLSv1.1,TLSv1.2 -Djdk.tls.client.protocols=TLSv1.1,TLSv1.2 \
+-XX:ReservedCodeCacheSize=512m -XX:+UseCodeCacheFlushing \
+{{ confluence_jvm_support_recommended_args }} \
+-Dconfluence.home={{ confluence_home }} \
+-Dcatalina.connector.scheme={{ confluence_catalina_connector_scheme }} \
+-Dcatalina.connector.secure={{ confluence_catalina_connector_secure }} \
+-Dcatalina.connector.proxyName={{ confluence_catalina_connector_proxyname }} \
+-Dcatalina.connector.proxyPort={{ confluence_catalina_connector_proxyport }} \
+-Dcatalina.context.path={{ confluence_catalina_context_path }} \
+"
 export CATALINA_OPTS
-
-sed -i "s/\(<session-timeout>\).*\(<\/session-timeout>\)/\1${SESSION_TIMEOUT:-"{{ confluence_session_timeout }}"}\2/g" ${CONFLUENCE_CATALINA}/confluence/WEB-INF/web.xml
