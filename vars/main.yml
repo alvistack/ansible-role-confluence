@@ -16,30 +16,30 @@
 
 _confluence_download:
   "7.11.0":
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.11.0.tar.gz"
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.11.0.tar.gz"
     dest: "/var/cache/ansible/fc3fdf320f96464186578346ef782f543670c22ffc041d30e8858afce43771a0/atlassian-confluence-7.11.0.tar.gz"
     checksum: "sha256:fc3fdf320f96464186578346ef782f543670c22ffc041d30e8858afce43771a0"
   "7.10.2":
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.10.2.tar.gz"
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.10.2.tar.gz"
     dest: "/var/cache/ansible/d1ee567727725189262367894a52a974a06e13415b99484c6dc3190259347785/atlassian-confluence-7.10.2.tar.gz"
     checksum: "sha256:d1ee567727725189262367894a52a974a06e13415b99484c6dc3190259347785"
   "7.10.1":
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.10.1.tar.gz"
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.10.1.tar.gz"
     dest: "/var/cache/ansible/49c1345179a8c476fb1ce26149f38b5e3dd66f7fd78ad16e391dfa224b668319/atlassian-confluence-7.10.1.tar.gz"
     checksum: "sha256:49c1345179a8c476fb1ce26149f38b5e3dd66f7fd78ad16e391dfa224b668319"
   "7.10.0":
-    url: "https://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.10.0.tar.gz"
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.10.0.tar.gz"
     dest: "/var/cache/ansible/4344e4793e963a44fc8cf3143db9cb09421cc1621d109a234b9e572198dfcf1d/atlassian-confluence-7.10.0.tar.gz"
     checksum: "sha256:4344e4793e963a44fc8cf3143db9cb09421cc1621d109a234b9e572198dfcf1d"
 
 _mysql_jdbc_download:
   "5.1.49":
-    url: "https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.49.tar.gz"
+    url: "http://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.49.tar.gz"
     dest: "/var/cache/ansible/25dc7e687f58b2345176ecb8aff6ca87acd33bce5b2b3cc92dd0557806d16dca/mysql-connector-java-5.1.49.tar.gz"
     checksum: "sha256:25dc7e687f58b2345176ecb8aff6ca87acd33bce5b2b3cc92dd0557806d16dca"
 
 _postgresql_jdbc_download:
   "42.2.18":
-    url: "https://jdbc.postgresql.org/download/postgresql-42.2.18.jar"
+    url: "http://jdbc.postgresql.org/download/postgresql-42.2.18.jar"
     dest: "/var/cache/ansible/0c891979f1eb2fe44432da114d09760b5063dad9e669ac0ac6b0b6bfb91bb3ba/postgresql-42.2.18.jar"
     checksum: "sha256:0c891979f1eb2fe44432da114d09760b5063dad9e669ac0ac6b0b6bfb91bb3ba"
