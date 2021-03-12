@@ -86,24 +86,11 @@
     - dest: "{{ confluence_home }}"
       owner: "{{ confluence_owner }}"
       group: "{{ confluence_group }}"
-  register: file_result
+  notify:
+    - confluence | download archive
 
-- name: download archive
-  vars:
-    ansible_python_interpreter: "python3"
-  get_url:
-    url: "{{ item.url }}"
-    dest: "{{ item.dest }}"
-    checksum: "{{ item.checksum }}"
-    mode: "{{ item.mode | default('0644') }}"
-    timeout: 300
-  loop:
-    - "{{ confluence_download }}"
-    - "{{ mysql_jdbc_download }}"
-    - "{{ postgresql_jdbc_download }}"
-  when: file_result is changed
-  register: result
-  until: result is succeeded
+- name: flush handlers
+  meta: flush_handlers
 
 - name: unarchive package
   shell: |
