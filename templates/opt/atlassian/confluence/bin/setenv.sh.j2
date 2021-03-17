@@ -91,8 +91,8 @@ ${START_CONFLUENCE_JAVA_OPTS} \
 -Djdk.tls.server.protocols=TLSv1.1,TLSv1.2 -Djdk.tls.client.protocols=TLSv1.1,TLSv1.2 \
 -XX:ReservedCodeCacheSize=512m -XX:+UseCodeCacheFlushing \
 {{ confluence_jvm_support_recommended_args }} \
--Djobs.limit.per.purge=1000000 \
--Dall.jobs.ttl.hours=24 \
+-Djobs.limit.per.purge=1048576 \
+-Dall.jobs.ttl.hours=72 \
 -Dunsuccessful.jobs.ttl.hours=24 \
 -Dconfluence.home={{ confluence_home }} \
 -Dcatalina.connector.scheme={{ confluence_catalina_connector_scheme }} \
