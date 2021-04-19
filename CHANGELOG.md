@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+  - Support Fedora 34
+  - Support Ubuntu 21.04
   - Bugfix "Purge Old Job Run Details"
   - Simplify download archive logic
 
