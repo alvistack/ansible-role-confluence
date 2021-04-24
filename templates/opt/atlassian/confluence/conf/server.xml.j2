@@ -10,8 +10,8 @@
          ==============================================================================================================
         -->
         <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
-                   scheme="${catalina.connector.scheme}" secure="${catalina.connector.secure}"
-                   proxyName="${catalina.connector.proxyName}" proxyPort="${catalina.connector.proxyPort}"
+                   proxyName="{{ confluence_catalina_connector_proxyname }}" proxyPort="{{ confluence_catalina_connector_proxyport }}"
+                   scheme="{{ confluence_catalina_connector_scheme }}" secure="{{ confluence_catalina_connector_secure }}"
                    maxThreads="48" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" debug="0" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"/>
@@ -36,7 +36,7 @@
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
                    scheme="http" proxyName="<subdomain>.<domain>.com" proxyPort="80"/>
         -->
-        
+
         <!--
          ==============================================================================================================
          HTTPS - Direct connector with no proxy, for unproxied HTTPS access to Confluence.
@@ -78,13 +78,27 @@
 
         <Engine name="Standalone" defaultHost="localhost" debug="0">
             <Host name="localhost" debug="0" appBase="webapps" unpackWARs="true" autoDeploy="false" startStopThreads="4">
-                <Context path="${catalina.context.path}" docBase="../confluence" debug="0" reloadable="false" useHttpOnly="true">
+                <Context path="{{ confluence_catalina_context_path }}" docBase="../confluence" debug="0" reloadable="false" useHttpOnly="true">
                     <!-- Logging configuration for Confluence is specified in confluence/WEB-INF/classes/log4j.properties -->
                     <Manager pathname=""/>
                     <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60"/>
+
+                    <!-- http://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Access_Log_Valve -->
+                    <Valve className="org.apache.catalina.valves.AccessLogValve"
+                           directory="logs"
+                           maxDays="30"
+                           pattern="%t %{X-AUSERNAME}o %I %h %r %s %Dms %b %{Referer}i %{User-Agent}i"
+                           prefix="conf_access_log"
+                           requestAttributesEnabled="true"
+                           rotatable="true"
+                           suffix=".log"
+                    />
+
+                    <!-- http://tomcat.apache.org/tomcat-9.0-doc/config/valve.html#Remote_IP_Valve -->
+                    <Valve className="org.apache.catalina.valves.RemoteIpValve" />
                 </Context>
 
-                <Context path="${catalina.context.path}/synchrony-proxy" docBase="../synchrony-proxy" debug="0"
+                <Context path="{{ confluence_catalina_context_path }}/synchrony-proxy" docBase="../synchrony-proxy" debug="0"
                          reloadable="false" useHttpOnly="true">
                     <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60"/>
                 </Context>
