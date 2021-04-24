@@ -183,7 +183,6 @@
     value: "{{ confluence_session_timeout | int }}"
     state: "present"
   notify:
-    - confluence | systemctl daemon-reload
     - confluence | systemctl restart confluence.service
 
 - name: flush handlers
