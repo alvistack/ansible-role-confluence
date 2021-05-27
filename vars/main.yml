@@ -14,6 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+_confluence_version:
+  "7.12": "7.12.1"
+  "7.11": "7.11.2"
+
 _confluence_download:
   "7.12.1":
     url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.12.1.tar.gz"

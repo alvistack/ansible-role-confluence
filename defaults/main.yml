@@ -14,8 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Confluence release.
+confluence_release: "7.12"
+
 # Confluence version.
-confluence_version: "7.12.1"
+confluence_version: "{{ _confluence_version[confluence_release] }}"
 
 # Confluence download details.
 confluence_download: "{{ _confluence_download[confluence_version] }}"
