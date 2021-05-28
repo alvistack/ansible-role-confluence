@@ -76,7 +76,6 @@
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: "/lib/systemd/system" }
-    - { dest: "/lib/systemd/system/confluence.service.d" }
     - dest: "{{ confluence_catalina }}"
       owner: "{{ confluence_owner }}"
       group: "{{ confluence_group }}"
