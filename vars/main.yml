@@ -14,34 +14,41 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-_confluence_version:
-  "7.12": "7.12.1"
-  "7.11": "7.11.2"
-
-_confluence_download:
-  "7.12.1":
-    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.12.1.tar.gz"
-    dest: "/var/cache/ansible/f63ea6f63fef1b566f74a95b17a7d938623b02fcc33559532620058a20a9d6c9/atlassian-confluence-7.12.1.tar.gz"
-    sha256sum: "f63ea6f63fef1b566f74a95b17a7d938623b02fcc33559532620058a20a9d6c9"
-  "7.12.0":
-    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.12.0.tar.gz"
-    dest: "/var/cache/ansible/be0e5f9ffd3cbf9ff8753795b407c3c8e0080716fd418196aa7c3ea0c29b3c6d/atlassian-confluence-7.12.0.tar.gz"
-    sha256sum: "be0e5f9ffd3cbf9ff8753795b407c3c8e0080716fd418196aa7c3ea0c29b3c6d"
-  "7.11.2":
-    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.11.2.tar.gz"
-    dest: "/var/cache/ansible/134096be9227dbb2fc99574d3b7fda2575dd29a641401c25fd35475d9966dea9/atlassian-confluence-7.11.2.tar.gz"
-    sha256sum: "134096be9227dbb2fc99574d3b7fda2575dd29a641401c25fd35475d9966dea9"
-  "7.11.1":
-    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.11.1.tar.gz"
-    dest: "/var/cache/ansible/67413fc2363eb6d53372fcb7d454275972167acd2a57cfab5faae60e3644a231/atlassian-confluence-7.11.1.tar.gz"
-    sha256sum: "67413fc2363eb6d53372fcb7d454275972167acd2a57cfab5faae60e3644a231"
-  "7.11.0":
-    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.11.0.tar.gz"
-    dest: "/var/cache/ansible/fc3fdf320f96464186578346ef782f543670c22ffc041d30e8858afce43771a0/atlassian-confluence-7.11.0.tar.gz"
-    sha256sum: "fc3fdf320f96464186578346ef782f543670c22ffc041d30e8858afce43771a0"
+_postgresql_jdbc_version:
+  "42.2": "42.2.20"
 
 _postgresql_jdbc_download:
   "42.2.20":
     url: "http://jdbc.postgresql.org/download/postgresql-42.2.20.jar"
-    dest: "/var/cache/ansible/708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e/postgresql-42.2.20.jar"
-    sha256sum: "708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e"
+    dest: "/tmp/708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e/postgresql-42.2.20.jar"
+    checksum: "708b2938aea81f32b8b35440da233828284a100e6f2212a7ab1eeaf4b3a6514e"
+
+_confluence_version:
+  "7.12": "7.12.2"
+  "7.11": "7.11.2"
+
+_confluence_download:
+  "7.12.2":
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.12.2.tar.gz"
+    dest: "/tmp/4991721d4e94cbfa29c1f5b407e867a7edf04247feeb0dbf3f6e491fe05f2c66/atlassian-confluence-7.12.2.tar.gz"
+    checksum: "4991721d4e94cbfa29c1f5b407e867a7edf04247feeb0dbf3f6e491fe05f2c66"
+  "7.12.1":
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.12.1.tar.gz"
+    dest: "/tmp/f63ea6f63fef1b566f74a95b17a7d938623b02fcc33559532620058a20a9d6c9/atlassian-confluence-7.12.1.tar.gz"
+    checksum: "f63ea6f63fef1b566f74a95b17a7d938623b02fcc33559532620058a20a9d6c9"
+  "7.12.0":
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.12.0.tar.gz"
+    dest: "/tmp/be0e5f9ffd3cbf9ff8753795b407c3c8e0080716fd418196aa7c3ea0c29b3c6d/atlassian-confluence-7.12.0.tar.gz"
+    checksum: "be0e5f9ffd3cbf9ff8753795b407c3c8e0080716fd418196aa7c3ea0c29b3c6d"
+  "7.11.2":
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.11.2.tar.gz"
+    dest: "/tmp/134096be9227dbb2fc99574d3b7fda2575dd29a641401c25fd35475d9966dea9/atlassian-confluence-7.11.2.tar.gz"
+    checksum: "134096be9227dbb2fc99574d3b7fda2575dd29a641401c25fd35475d9966dea9"
+  "7.11.1":
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.11.1.tar.gz"
+    dest: "/tmp/67413fc2363eb6d53372fcb7d454275972167acd2a57cfab5faae60e3644a231/atlassian-confluence-7.11.1.tar.gz"
+    checksum: "67413fc2363eb6d53372fcb7d454275972167acd2a57cfab5faae60e3644a231"
+  "7.11.0":
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.11.0.tar.gz"
+    dest: "/tmp/fc3fdf320f96464186578346ef782f543670c22ffc041d30e8858afce43771a0/atlassian-confluence-7.11.0.tar.gz"
+    checksum: "fc3fdf320f96464186578346ef782f543670c22ffc041d30e8858afce43771a0"
