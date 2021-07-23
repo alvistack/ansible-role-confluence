@@ -1,13 +1,9 @@
 # Ansible Role for Confluence
 
-[![Gitlab pipeline
-status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-confluence/master)](https://gitlab.com/alvistack/ansible-role-confluence/-/pipelines)
-[![GitHub
-release](https://img.shields.io/github/release/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence/releases)
-[![GitHub
-license](https://img.shields.io/github/license/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence/blob/master/LICENSE)
-[![Ansible
-Role](https://img.shields.io/badge/galaxy-alvistack.confluence-blue.svg)](https://galaxy.ansible.com/alvistack/confluence)
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-confluence/master)](https://gitlab.com/alvistack/ansible-role-confluence/-/pipelines)
+[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence/releases)
+[![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence/blob/master/LICENSE)
+[![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.confluence-blue.svg)](https://galaxy.ansible.com/alvistack/confluence)
 
 Ansible Role for Atlassian Confluence Installation.
 
@@ -43,8 +39,7 @@ This role could simply deploy to `localhost` as below:
 ## License
 
   - Code released under [Apache License 2.0](LICENSE)
-  - Docs released under [CC BY
-    4.0](http://creativecommons.org/licenses/by/4.0/)
+  - Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 ## Author Information
 
