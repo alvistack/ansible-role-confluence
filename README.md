@@ -1,5 +1,7 @@
 # Ansible Role for Confluence
 
+<img src="/alvistack.svg" width="75" alt="AlviStack">
+
 [![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-confluence/master)](https://gitlab.com/alvistack/ansible-role-confluence/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-confluence.svg)](https://github.com/alvistack/ansible-role-confluence/blob/master/LICENSE)
