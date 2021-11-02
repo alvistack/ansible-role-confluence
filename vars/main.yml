@@ -15,19 +15,23 @@
 # limitations under the License.
 
 _postgresql_jdbc_version:
-  "42.3": "42.3.0"
+  "42.3": "42.3.1"
 
 _postgresql_jdbc_download:
-  "42.3.0":
-    url: "http://jdbc.postgresql.org/download/postgresql-42.3.0.jar"
-    dest: "/var/cache/ansible/bd3b88a62d92f36b26c254203460d5f0463da15c0e964a0c7197c83f3c689ccd/postgresql-42.3.0.jar"
-    checksum: "bd3b88a62d92f36b26c254203460d5f0463da15c0e964a0c7197c83f3c689ccd"
+  "42.3.1":
+    url: "http://jdbc.postgresql.org/download/postgresql-42.3.1.jar"
+    dest: "/var/cache/ansible/8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4/postgresql-42.3.1.jar"
+    checksum: "8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4"
 
 _confluence_version:
-  "7.14": "7.14.0"
+  "7.14": "7.14.1"
   "7.13": "7.13.1"
 
 _confluence_download:
+  "7.14.1":
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.14.1.tar.gz"
+    dest: "/var/cache/ansible/67d6d3625602d4d2e1d6cf419b5947c1fd48a1637622402229b9a3e0976c9cd1/atlassian-confluence-7.14.1.tar.gz"
+    checksum: "67d6d3625602d4d2e1d6cf419b5947c1fd48a1637622402229b9a3e0976c9cd1"
   "7.14.0":
     url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.14.0.tar.gz"
     dest: "/var/cache/ansible/eabab2c0d612b6ca54e82001c5cfa0d65e20e51a1ec9783af6b9f5b34a01f6e0/atlassian-confluence-7.14.0.tar.gz"
