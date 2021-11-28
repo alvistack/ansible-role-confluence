@@ -24,7 +24,7 @@ postgresql_jdbc_version: "{{ _postgresql_jdbc_version[postgresql_jdbc_release] }
 postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version] }}"
 
 # Confluence release.
-confluence_release: "7.14"
+confluence_release: "7.15"
 
 # Confluence version.
 confluence_version: "{{ _confluence_version[confluence_release] }}"
