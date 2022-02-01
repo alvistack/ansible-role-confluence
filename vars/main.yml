@@ -24,10 +24,14 @@ _postgresql_jdbc_download:
     checksum: "8370570857da86eb4a76dd3d8505d34bac0c18186741fa83a6820a10fa441cb4"
 
 _confluence_version:
+  "7.16": "7.16.0"
   "7.15": "7.15.1"
-  "7.14": "7.14.2"
 
 _confluence_download:
+  "7.16.0":
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.16.0.tar.gz"
+    dest: "/var/cache/ansible/1d0659b93c9f65e9ae17cdff61f805804ec2082f14d09edd62c09a7ac2b230b4/atlassian-confluence-7.16.0.tar.gz"
+    checksum: "1d0659b93c9f65e9ae17cdff61f805804ec2082f14d09edd62c09a7ac2b230b4"
   "7.15.1":
     url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.15.1.tar.gz"
     dest: "/var/cache/ansible/76f4b7f08d518c17576e18971b5bdb02c2606ce07d664ee016a0dc6182310bfc/atlassian-confluence-7.15.1.tar.gz"
@@ -36,15 +40,3 @@ _confluence_download:
     url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.15.0.tar.gz"
     dest: "/var/cache/ansible/eed49e3e15fd9c44a8c0d3984cc097208782bd45dc44c21013a0ffda8b10ea44/atlassian-confluence-7.15.0.tar.gz"
     checksum: "eed49e3e15fd9c44a8c0d3984cc097208782bd45dc44c21013a0ffda8b10ea44"
-  "7.14.2":
-    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.14.2.tar.gz"
-    dest: "/var/cache/ansible/f81e8b9722ba13fee86a478bfa3235aa88aac212208c80335a5f800480dfeae7/atlassian-confluence-7.14.2.tar.gz"
-    checksum: "f81e8b9722ba13fee86a478bfa3235aa88aac212208c80335a5f800480dfeae7"
-  "7.14.1":
-    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.14.1.tar.gz"
-    dest: "/var/cache/ansible/67d6d3625602d4d2e1d6cf419b5947c1fd48a1637622402229b9a3e0976c9cd1/atlassian-confluence-7.14.1.tar.gz"
-    checksum: "67d6d3625602d4d2e1d6cf419b5947c1fd48a1637622402229b9a3e0976c9cd1"
-  "7.14.0":
-    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.14.0.tar.gz"
-    dest: "/var/cache/ansible/eabab2c0d612b6ca54e82001c5cfa0d65e20e51a1ec9783af6b9f5b34a01f6e0/atlassian-confluence-7.14.0.tar.gz"
-    checksum: "eabab2c0d612b6ca54e82001c5cfa0d65e20e51a1ec9783af6b9f5b34a01f6e0"
