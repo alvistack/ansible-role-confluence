@@ -24,10 +24,14 @@ _postgresql_jdbc_download:
     checksum: "eed0604f512ba44817954de99a07e2a5470aa4bfcb481d4e63a93e0ff0e0aede"
 
 _confluence_version:
-  "7.17": "7.17.0"
+  "7.17": "7.17.1"
   "7.16": "7.16.3"
 
 _confluence_download:
+  "7.17.1":
+    url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.17.1.tar.gz"
+    dest: "/var/cache/ansible/4c5b56b8947fb7730c6ecf0677cd7c0723a732d893e10c5b729801c585f31586/atlassian-confluence-7.17.1.tar.gz"
+    checksum: "4c5b56b8947fb7730c6ecf0677cd7c0723a732d893e10c5b729801c585f31586"
   "7.17.0":
     url: "http://product-downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-7.17.0.tar.gz"
     dest: "/var/cache/ansible/e21a44ea28283c8808d616fea9bda5827dde535230b4b5b6cea81d73a8c4f333/atlassian-confluence-7.17.0.tar.gz"
