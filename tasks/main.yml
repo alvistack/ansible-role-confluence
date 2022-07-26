@@ -69,77 +69,6 @@
     create_home: false
     state: "present"
 
-- name: prepare directories
-  ansible.builtin.file:
-    dest: "{{ item.dest }}"
-    owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
-    mode: "{{ item.mode | default('0755') }}"
-    state: "{{ item.state | default('directory') }}"
-  loop:
-    - { dest: "/etc/systemd/system" }
-    - dest: "{{ confluence_catalina }}"
-      owner: "{{ confluence_owner }}"
-      group: "{{ confluence_group }}"
-    - dest: "{{ confluence_catalina }}/bin"
-      owner: "{{ confluence_owner }}"
-      group: "{{ confluence_group }}"
-    - dest: "{{ confluence_catalina }}/conf"
-      owner: "{{ confluence_owner }}"
-      group: "{{ confluence_group }}"
-    - dest: "{{ confluence_home }}"
-      owner: "{{ confluence_owner }}"
-      group: "{{ confluence_group }}"
-
-- name: download archive
-  ansible.builtin.shell: |
-    set -euxo pipefail
-    mkdir -p /var/log/ansible
-    exec &> >(tee -a /var/log/ansible/{{ item.checksum }}-get_url.log)
-    TMP_DIR="$(mktemp -d)" \
-      && cd $TMP_DIR \
-      && mkdir -p .{{ item.dest | dirname }} \
-      && curl -skL -m 300 {{ item.url }} > .{{ item.dest }} \
-      && echo -n "{{ item.checksum }} .{{ item.dest }}" | sha256sum -c - \
-      && mkdir -p {{ item.dest | dirname }} \
-      && mv .{{ item.dest }} {{ item.dest }} \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "/var/log/ansible/{{ item.checksum }}-get_url.log"
-  loop:
-    - "{{ confluence_download }}"
-    - "{{ postgresql_jdbc_download }}"
-  register: result
-  until: result is succeeded
-
-- name: unarchive package
-  ansible.builtin.shell: |
-    set -euxo pipefail
-    mkdir -p /var/log/ansible
-    exec &> >(tee -a /var/log/ansible/{{ confluence_download.checksum }}-unarchive.log)
-    rm -rf {{ confluence_catalina }} \
-      && mkdir -p {{ confluence_catalina }}
-    cd {{ confluence_catalina }}
-    TMP_DIR="$(mktemp -d)" \
-      && tar -zx -C $TMP_DIR -f {{ confluence_download.dest }} \
-      && cp -rfT $TMP_DIR/* . \
-      && rm -rf $TMP_DIR
-    cd {{ confluence_catalina }}/confluence/WEB-INF/lib
-    rm -rf *postgresql*.jar
-    cp {{ postgresql_jdbc_download.dest }} .
-    chown -Rf {{ confluence_owner }}:{{ confluence_group }} {{ confluence_catalina }}
-    chmod 0755 \
-      {{ confluence_catalina }} \
-      {{ confluence_catalina }}/bin \
-      {{ confluence_catalina }}/conf
-  args:
-    executable: "/bin/bash"
-    creates: "/var/log/ansible/{{ confluence_download.checksum }}-unarchive.log"
-  notify:
-    - confluence | systemctl daemon-reload
-    - confluence | systemctl restart confluence.service
-
 - name: copy templates
   ansible.builtin.template:
     dest: "{{ item.dest }}"
@@ -148,7 +77,6 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode | default('0644') }}"
   loop:
-    - { dest: "/etc/systemd/system/confluence.service" }
     - dest: "{{ confluence_catalina }}/bin/setenv.sh"
       src: "./templates/opt/atlassian/confluence/bin/setenv.sh.j2"
       owner: "{{ confluence_owner }}"
@@ -159,7 +87,6 @@
       owner: "{{ confluence_owner }}"
       group: "{{ confluence_group }}"
   notify:
-    - confluence | systemctl daemon-reload
     - confluence | systemctl restart confluence.service
 
 - name: prepare files
@@ -170,7 +97,6 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
-    - { dest: "/etc/systemd/system/confluence.service" }
     - dest: "{{ confluence_catalina }}/bin/setenv.sh"
       owner: "{{ confluence_owner }}"
       group: "{{ confluence_group }}"
@@ -179,7 +105,6 @@
       owner: "{{ confluence_owner }}"
       group: "{{ confluence_group }}"
   notify:
-    - confluence | systemctl daemon-reload
     - confluence | systemctl restart confluence.service
 
 - name: patch {{ confluence_catalina }}/confluence/WEB-INF/web.xml
