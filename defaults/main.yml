@@ -14,23 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# PostgreSQL JDBC release.
-postgresql_jdbc_release: "42.4"
-
-# PostgreSQL JDBC version.
-postgresql_jdbc_version: "{{ _postgresql_jdbc_version[postgresql_jdbc_release] }}"
-
-# PostgreSQL JDBC download details.
-postgresql_jdbc_download: "{{ _postgresql_jdbc_download[postgresql_jdbc_version] }}"
-
 # Confluence release.
 confluence_release: "7.18"
 
 # Confluence version.
 confluence_version: "{{ _confluence_version[confluence_release] }}"
-
-# Confluence download details.
-confluence_download: "{{ _confluence_download[confluence_version] }}"
 
 # Owner and group for Confluence.
 confluence_owner: "confluence"
