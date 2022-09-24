@@ -107,7 +107,7 @@
   notify:
     - confluence | systemctl restart confluence.service
 
-- name: patch {{ confluence_catalina }}/confluence/WEB-INF/web.xml
+- name: patch /opt/atlassian/confluence/confluence/WEB-INF/web.xml
   vars:
     ansible_python_interpreter: "python3"
   xml:
