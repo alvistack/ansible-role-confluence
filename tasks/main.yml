@@ -110,7 +110,7 @@
 - name: patch /opt/atlassian/confluence/confluence/WEB-INF/web.xml
   vars:
     ansible_python_interpreter: "python3"
-  xml:
+  community.general.xml:
     path: "{{ confluence_catalina }}/confluence/WEB-INF/web.xml"
     xpath: "/ns:web-app/ns:session-config/ns:session-timeout"
     namespaces:
