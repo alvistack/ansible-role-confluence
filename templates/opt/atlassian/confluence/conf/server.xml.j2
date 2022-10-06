@@ -10,11 +10,11 @@
          ==============================================================================================================
         -->
         <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
-                   proxyName="{{ confluence_catalina_connector_proxyname }}" proxyPort="{{ confluence_catalina_connector_proxyport }}"
-                   scheme="{{ confluence_catalina_connector_scheme }}" secure="{{ confluence_catalina_connector_secure }}"
-                   maxThreads="48" minSpareThreads="10"
+                   maxThreads="48" maxPostSize="16777216" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" URIEncoding="UTF-8"
-                   protocol="org.apache.coyote.http11.Http11NioProtocol"/>
+                   protocol="org.apache.coyote.http11.Http11NioProtocol"
+                   scheme="${confluence.catalina.connector.scheme}" secure="${confluence.catalina.connector.secure}"
+                   proxyName="${confluence.catalina.connector.proxyname}" proxyPort="${confluence.catalina.connector.proxyport}"/>
         <!--
          ==============================================================================================================
          HTTP - Proxying Confluence via Apache or Nginx over HTTP
@@ -31,7 +31,7 @@
 
         <!--
         <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
-                   maxThreads="48" minSpareThreads="10"
+                   maxThreads="48" maxPostSize="16777216" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
                    scheme="http" proxyName="<subdomain>.<domain>.com" proxyPort="80"/>
@@ -47,7 +47,7 @@
 
         <!--
         <Connector port="8443" maxHttpHeaderSize="8192"
-                   maxThreads="150" minSpareThreads="25"
+                   maxThreads="150" maxPostSize="16777216" minSpareThreads="25"
                    protocol="org.apache.coyote.http11.Http11Nio2Protocol"
                    enableLookups="false" disableUploadTimeout="true"
                    acceptCount="100" scheme="https" secure="true"
@@ -70,7 +70,7 @@
 
         <!--
         <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
-                   maxThreads="48" minSpareThreads="10"
+                   maxThreads="48" maxPostSize="16777216" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
                    scheme="https" secure="true" proxyName="<subdomain>.<domain>.com" proxyPort="443"/>
@@ -78,7 +78,7 @@
 
         <Engine name="Standalone" defaultHost="localhost">
             <Host name="localhost" appBase="webapps" unpackWARs="true" autoDeploy="false" startStopThreads="4">
-                <Context path="{{ confluence_catalina_context_path }}" docBase="../confluence" reloadable="false" useHttpOnly="true">
+                <Context path="${confluence.catalina.context.path}" docBase="../confluence" reloadable="false" useHttpOnly="true">
                     <!-- Logging configuration for Confluence is specified in confluence/WEB-INF/classes/log4j.properties -->
                     <Manager pathname=""/>
                     <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60"/>
@@ -98,7 +98,7 @@
                     <Valve className="org.apache.catalina.valves.RemoteIpValve" />
                 </Context>
 
-                <Context path="{{ confluence_catalina_context_path }}/synchrony-proxy" docBase="../synchrony-proxy"
+                <Context path="${confluence.catalina.context.path}/synchrony-proxy" docBase="../synchrony-proxy"
                          reloadable="false" useHttpOnly="true">
                     <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60"/>
                 </Context>

@@ -68,14 +68,14 @@ export CONFLUENCE_CONTEXT_PATH
 $JRE_HOME/bin/java -jar $CATALINA_HOME/bin/synchrony-proxy-watchdog.jar $CATALINA_HOME
 echo "---------------------------------------------------------------------------"
 
-#-----------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------- 
 # This section contains commonly modified Java options and system properties
 # When upgrading Confluence, copy this section to reapply your customizations
 # Always the review the new file for any changes to the default values
 
-# To learn more about Java 8 options see:
+# To learn more about Java 8 options see: 
 # https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html
-# To learn more about Java 11 options see:
+# To learn more about Java 11 options see: 
 # https://docs.oracle.com/en/java/javase/11/tools/java.html
 #-----------------------------------------------------------------------------------
 
@@ -106,17 +106,22 @@ CATALINA_OPTS="-XX:ReservedCodeCacheSize=256m ${CATALINA_OPTS}"
 #CATALINA_OPTS="-Datlassian.mail.senddisabled=true -Datlassian.mail.fetchdisabled=true ${CATALINA_OPTS}"
 
 #-----------------------------------------------------------------------------------
-# End of commonly modified Java options. You should not need to change the options
+# End of commonly modified Java options. You should not need to change the options 
 # below unless recommended by Atlassian Support
 #-----------------------------------------------------------------------------------
 
 CATALINA_OPTS="-XX:+IgnoreUnrecognizedVMOptions ${CATALINA_OPTS}"
-CATALINA_OPTS="-XX:G1ReservePercent=20 -XX:+UseG1GC -XX:+ExplicitGCInvokesConcurrent -XX:+PrintGCDateStamps ${CATALINA_OPTS}"
+CATALINA_OPTS="-XX:+UseZGC -XX:+ExplicitGCInvokesConcurrent ${CATALINA_OPTS}"
 CATALINA_OPTS="-Xlog:gc+age=debug:file=$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log::filecount=5,filesize=2M ${CATALINA_OPTS}"
-CATALINA_OPTS="-Xloggc:$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=2M ${CATALINA_OPTS}"
+CATALINA_OPTS="-Xlog:gc*,gc+age*=trace:file=$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log:tags,time,uptime,level:filecount=5,filesize=2M ${CATALINA_OPTS}"
 CATALINA_OPTS="-Djava.awt.headless=true ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dsynchrony.enable.xhr.fallback=true ${CATALINA_OPTS}"
 CATALINA_OPTS="-Djava.locale.providers=JRE,SPI,CLDR ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dconfluence.catalina.connector.scheme={{ confluence_catalina_connector_scheme }} ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dconfluence.catalina.connector.secure={{ confluence_catalina_connector_secure }} ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dconfluence.catalina.connector.proxyname={{ confluence_catalina_connector_proxyname }} ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dconfluence.catalina.connector.proxyport={{ confluence_catalina_connector_proxyport }} ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dconfluence.catalina.context.path={{ confluence_catalina_context_path }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dorg.apache.tomcat.websocket.DEFAULT_BUFFER_SIZE=32768 ${CATALINA_OPTS}"
 CATALINA_OPTS="-Djobs.limit.per.purge=1048576 ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dall.jobs.ttl.hours=72 ${CATALINA_OPTS}"
