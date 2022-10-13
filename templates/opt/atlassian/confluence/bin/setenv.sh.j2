@@ -83,7 +83,7 @@ echo "--------------------------------------------------------------------------
 CATALINA_OPTS="-Xms{{ confluence_jvm_minimum_memory }} -Xmx{{ confluence_jvm_maximum_memory }} ${CATALINA_OPTS}"
 
 # Default values for small to medium size instances
-CATALINA_OPTS="-XX:ReservedCodeCacheSize=256m ${CATALINA_OPTS}"
+CATALINA_OPTS="-XX:ReservedCodeCacheSize={{ confluence_jvm_reserved_code_cache_size }} ${CATALINA_OPTS}"
 
 # Recommended values for medium to large, and enterprise size instances
 # Comment out the default values in the block above, then uncomment the values below
@@ -117,6 +117,7 @@ CATALINA_OPTS="-Xlog:gc*,gc+age*=trace:file=$LOGBASEABS/logs/gc-`date +%F_%H-%M-
 CATALINA_OPTS="-Djava.awt.headless=true ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dsynchrony.enable.xhr.fallback=true ${CATALINA_OPTS}"
 CATALINA_OPTS="-Djava.locale.providers=JRE,SPI,CLDR ${CATALINA_OPTS}"
+CATALINA_OPTS="-Dconfluence.catalina.connector.port={{ confluence_catalina_connector_port }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dconfluence.catalina.connector.scheme={{ confluence_catalina_connector_scheme }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dconfluence.catalina.connector.secure={{ confluence_catalina_connector_secure }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dconfluence.catalina.connector.proxyname={{ confluence_catalina_connector_proxyname }} ${CATALINA_OPTS}"
