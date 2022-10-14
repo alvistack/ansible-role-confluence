@@ -33,12 +33,14 @@ confluence_catalina: "/opt/atlassian/confluence"
 # JVM minimal and maximum memory usage.
 confluence_jvm_minimum_memory: "2048m"
 confluence_jvm_maximum_memory: "2048m"
+confluence_jvm_reserved_code_cache_size: "512m"
 
 # Proxy and context path setup.
+confluence_catalina_connector_port: "8090"
+confluence_catalina_connector_scheme: ~
+confluence_catalina_connector_secure: ~
 confluence_catalina_connector_proxyname: ~
 confluence_catalina_connector_proxyport: ~
-confluence_catalina_connector_scheme: "http"
-confluence_catalina_connector_secure: "false"
 confluence_catalina_context_path: ~
 
 # Atlassian Support recommended JVM arguments.
@@ -47,4 +49,4 @@ confluence_jvm_support_recommended_args: >-
   -XX:+UnlockExperimentalVMOptions
 
 # Session timeout (in minutes).
-confluence_session_timeout: "120"
+confluence_autologin_cookie_age: "120"

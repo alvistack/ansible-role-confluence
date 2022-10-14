@@ -9,7 +9,7 @@
          If using a http/https proxy, comment out this connector.
          ==============================================================================================================
         -->
-        <Connector port="8090" connectionTimeout="20000" redirectPort="8443"
+        <Connector port="${confluence.catalina.connector.port}" connectionTimeout="20000" redirectPort="8443"
                    maxThreads="48" maxPostSize="16777216" minSpareThreads="10"
                    enableLookups="false" acceptCount="10" URIEncoding="UTF-8"
                    protocol="org.apache.coyote.http11.Http11NioProtocol"
