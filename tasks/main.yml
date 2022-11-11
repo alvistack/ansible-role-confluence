@@ -69,6 +69,29 @@
     create_home: false
     state: "present"
 
+- name: prepare directories
+  ansible.builtin.file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0755') }}"
+    state: "{{ item.state | default('directory') }}"
+  loop:
+    - dest: "{{ confluence_catalina }}"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
+      mode: "0700"
+    - dest: "{{ confluence_catalina }}/bin"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
+    - dest: "{{ confluence_catalina }}/conf"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
+    - dest: "{{ confluence_home }}"
+      owner: "{{ confluence_owner }}"
+      group: "{{ confluence_group }}"
+      mode: "0750"
+
 - name: copy templates
   ansible.builtin.template:
     dest: "{{ item.dest }}"
