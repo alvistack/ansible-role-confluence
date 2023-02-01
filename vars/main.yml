@@ -15,6 +15,6 @@
 # limitations under the License.
 
 _confluence_version:
-  "8.0": "8.0.2"
+  "8.0": "8.0.3"
   "7.20": "7.20.3"
-  "7.19": "7.19.4"
+  "7.19": "7.19.5"
