@@ -14,8 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-_confluence_version:
-  "8.1": "8.1.3"
-  "8.0": "8.0.4"
-  "7.20": "7.20.3"
-  "7.19": "7.19.7"
+_apt_key:
+  - keyring: "/etc/apt/trusted.gpg.d/home_alvistack.gpg"
+    url: "http://downloadcontent.opensuse.org/repositories/home:/alvistack/xUbuntu_23.04/Release.key"
+    id: "789CFFDE0295B8A1F4E5690C4BECC97550D0B1FD"
+    state: "present"
+
+_apt_repository:
+  - filename: "home:alvistack"
+    repo: "deb http://downloadcontent.opensuse.org/repositories/home:/alvistack/xUbuntu_23.04/ /"
+    state: "present"
+
+_apt:
+  - { state: "present", name: "atlassian-confluence=100:{{ confluence_version }}*" }
+  - { state: "latest", name: "fontconfig" }
