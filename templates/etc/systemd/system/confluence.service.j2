@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+[Unit]
+Description=Atlassian Confluence
+After=multi-user.target
+Wants=multi-user.target
+
+[Service]
+Type=forking
+User={{ confluence_owner }}
+Group={{ confluence_group }}
+ExecStart={{ confluence_catalina }}/bin/start-confluence.sh
+ExecStop={{ confluence_catalina }}/bin/stop-confluence.sh
+PIDFile={{ confluence_catalina }}/work/catalina.pid
+
+[Install]
+WantedBy=multi-user.target
