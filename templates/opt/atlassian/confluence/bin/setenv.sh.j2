@@ -68,14 +68,12 @@ export CONFLUENCE_CONTEXT_PATH
 $JRE_HOME/bin/java -jar $CATALINA_HOME/bin/synchrony-proxy-watchdog.jar $CATALINA_HOME
 echo "---------------------------------------------------------------------------"
 
-#----------------------------------------------------------------------------------- 
+#-----------------------------------------------------------------------------------
 # This section contains commonly modified Java options and system properties
 # When upgrading Confluence, copy this section to reapply your customizations
 # Always the review the new file for any changes to the default values
 
-# To learn more about Java 8 options see: 
-# https://docs.oracle.com/javase/8/docs/technotes/tools/windows/java.html
-# To learn more about Java 11 options see: 
+# To learn more about Java 11 options see:
 # https://docs.oracle.com/en/java/javase/11/tools/java.html
 #-----------------------------------------------------------------------------------
 
@@ -85,14 +83,27 @@ CATALINA_OPTS="-Xms{{ confluence_jvm_minimum_memory }} -Xmx{{ confluence_jvm_max
 # Default values for small to medium size instances
 CATALINA_OPTS="-XX:ReservedCodeCacheSize={{ confluence_jvm_reserved_code_cache_size }} ${CATALINA_OPTS}"
 
+# Add various JPMS arguments to allow Confluence to work on Java 17
+CATALINA_OPTS="@$CATALINA_HOME/confluence/WEB-INF/jpms-args.txt ${CATALINA_OPTS}"
+
+# Default garbage collector and its settings
+if [ -z "${CONFLUENCE_GC_OPTS}" ]; then
+  CONFLUENCE_GC_OPTS="-XX:+UseZGC -XX:+ExplicitGCInvokesConcurrent"
+fi
+
+# Default garbage collector log
+if [ -z "${CONFLUENCE_GC_LOG}" ]; then
+  CONFLUENCE_GC_LOG="-Xlog:gc*,gc+age*=trace:file=$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log:tags,time,uptime,level:filecount=5,filesize=2M"
+fi
+
 # Recommended values for medium to large, and enterprise size instances
-# Comment out the default values in the block above, then uncomment the values below
+# For -XX:ReservedCodeCacheSize - comment out the default values in the block above, then uncomment the values below
+#CATALINA_OPTS="-XX:ReservedCodeCacheSize=384m ${CATALINA_OPTS}"
 # To learn more about the impact of disabling the upgrade recovery file see:
 # https://confluence.atlassian.com/x/ShtwPg
-#CATALINA_OPTS="-XX:ReservedCodeCacheSize=384m ${CATALINA_OPTS}"
-#CATALINA_OPTS="-XX:+PrintTenuringDistribution ${CATALINA_OPTS}"
-#CATALINA_OPTS="-XX:+PrintGCDetails -XX:+PrintGCTimeStamps ${CATALINA_OPTS}"
 #CATALINA_OPTS="-Dconfluence.upgrade.recovery.file.enabled=false ${CATALINA_OPTS}"
+# For -Xlog:gc - uncomment the default values in the block below, then comment out the values in the last block of this file
+#CATALINA_OPTS="-Xlog:gc*=debug:file=$LOGBASEABS/logs/gc-%t.log:tags,time,uptime,level:filecount=5,filesize=2M ${CATALINA_OPTS}"
 
 # Additional Confluence system properties
 # For a list of properties recognized by Confluence see:
@@ -106,17 +117,15 @@ CATALINA_OPTS="-XX:ReservedCodeCacheSize={{ confluence_jvm_reserved_code_cache_s
 #CATALINA_OPTS="-Datlassian.mail.senddisabled=true -Datlassian.mail.fetchdisabled=true ${CATALINA_OPTS}"
 
 #-----------------------------------------------------------------------------------
-# End of commonly modified Java options. You should not need to change the options 
+# End of commonly modified Java options. You should not need to change the options
 # below unless recommended by Atlassian Support
 #-----------------------------------------------------------------------------------
 
 CATALINA_OPTS="-XX:+IgnoreUnrecognizedVMOptions ${CATALINA_OPTS}"
-CATALINA_OPTS="-XX:+UseZGC -XX:+ExplicitGCInvokesConcurrent ${CATALINA_OPTS}"
-CATALINA_OPTS="-Xlog:gc+age=debug:file=$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log::filecount=5,filesize=2M ${CATALINA_OPTS}"
-CATALINA_OPTS="-Xlog:gc*,gc+age*=trace:file=$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log:tags,time,uptime,level:filecount=5,filesize=2M ${CATALINA_OPTS}"
+CATALINA_OPTS="${CONFLUENCE_GC_OPTS} ${CATALINA_OPTS}"
+CATALINA_OPTS="${CONFLUENCE_GC_LOG} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Djava.awt.headless=true ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dsynchrony.enable.xhr.fallback=true ${CATALINA_OPTS}"
-CATALINA_OPTS="-Djava.locale.providers=JRE,SPI,CLDR ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dconfluence.catalina.connector.port={{ confluence_catalina_connector_port }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dconfluence.catalina.connector.scheme={{ confluence_catalina_connector_scheme }} ${CATALINA_OPTS}"
 CATALINA_OPTS="-Dconfluence.catalina.connector.secure={{ confluence_catalina_connector_secure }} ${CATALINA_OPTS}"
