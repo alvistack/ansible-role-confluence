@@ -88,7 +88,7 @@ CATALINA_OPTS="@$CATALINA_HOME/confluence/WEB-INF/jpms-args.txt ${CATALINA_OPTS}
 
 # Default garbage collector and its settings
 if [ -z "${CONFLUENCE_GC_OPTS}" ]; then
-  CONFLUENCE_GC_OPTS="-XX:+UseZGC -XX:+ExplicitGCInvokesConcurrent"
+  CONFLUENCE_GC_OPTS="-XX:+UseZGC -XX:ZCollectionInterval=5 -XX:ZAllocationSpikeTolerance=5 -XX:+ExplicitGCInvokesConcurrent"
 fi
 
 # Default garbage collector log
