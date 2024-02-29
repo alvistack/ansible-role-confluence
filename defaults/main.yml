@@ -50,4 +50,7 @@ confluence_jvm_support_recommended_args: >-
   -XX:+UnlockExperimentalVMOptions
 
 # Session timeout (in minutes).
+confluence_session_timeout: "120"
+
+# Remember Me timeout (in minutes).
 confluence_autologin_cookie_age: "120"
