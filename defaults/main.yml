@@ -21,28 +21,27 @@ confluence_release: "8.8"
 confluence_version: "{{ _confluence_version[confluence_release] }}"
 
 # Owner and group for Confluence.
-confluence_owner: "confluence"
-confluence_group: "confluence"
+confluence_owner: confluence
+confluence_group: confluence
 
 # Confluence home directory.
-confluence_home: "/var/atlassian/application-data/confluence"
+confluence_home: /var/atlassian/application-data/confluence
 
 # Confluence installation directory.
-confluence_catalina: "/opt/atlassian/confluence"
+confluence_catalina: /opt/atlassian/confluence
 
 # JVM minimal and maximum memory usage.
-confluence_jvm_minimum_memory: "2048m"
-confluence_jvm_maximum_memory: "2048m"
-confluence_jvm_reserved_code_cache_size: "512m"
+confluence_jvm_minimum_memory: 2048m
+confluence_jvm_maximum_memory: 2048m
+confluence_jvm_reserved_code_cache_size: 512m
 
 # Proxy and context path setup.
 confluence_catalina_connector_port: "8090"
-confluence_catalina_connector_scheme: ~
-confluence_catalina_connector_secure: ~
-confluence_catalina_connector_proxyname: ~
-confluence_catalina_connector_proxyport: ~
-confluence_catalina_context_path: ~
-
+confluence_catalina_connector_scheme:
+confluence_catalina_connector_secure:
+confluence_catalina_connector_proxyname:
+confluence_catalina_connector_proxyport:
+confluence_catalina_context_path:
 # Atlassian Support recommended JVM arguments.
 confluence_jvm_support_recommended_args: >-
   -Datlassian.plugins.enable.wait=300
