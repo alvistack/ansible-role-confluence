@@ -88,12 +88,12 @@ CATALINA_OPTS="@$CATALINA_HOME/confluence/WEB-INF/jpms-args.txt ${CATALINA_OPTS}
 
 # Default garbage collector and its settings
 if [ -z "${CONFLUENCE_GC_OPTS}" ]; then
-  CONFLUENCE_GC_OPTS="-XX:+UseZGC -XX:ZCollectionInterval=5 -XX:ZAllocationSpikeTolerance=5 -XX:+ExplicitGCInvokesConcurrent"
+  CONFLUENCE_GC_OPTS="{{ confluence_jvm_gc_args }}"
 fi
 
 # Default garbage collector log
 if [ -z "${CONFLUENCE_GC_LOG}" ]; then
-  CONFLUENCE_GC_LOG="-Xlog:gc*,gc+age*=trace:file=$LOGBASEABS/logs/gc-`date +%F_%H-%M-%S`.log:tags,time,uptime,level:filecount=5,filesize=2M"
+  CONFLUENCE_GC_LOG="-Xlog:gc*:file=$LOGBASEABS/logs/gc-%t.log:tags,time,uptime,level:filecount=5,filesize=2M"
 fi
 
 # Recommended values for medium to large, and enterprise size instances
