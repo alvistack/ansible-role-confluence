@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Confluence release.
-confluence_release: "9.2"
+confluence_release: "9.3"
 
 # Confluence version.
 confluence_version: "{{ _confluence_version[confluence_release] }}"
