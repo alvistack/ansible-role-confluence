@@ -162,7 +162,7 @@
     path: "{{ confluence_catalina }}/confluence/WEB-INF/web.xml"
     xpath: "{{ item.xpath }}"
     namespaces:
-      ns: http://xmlns.jcp.org/xml/ns/javaee
+      ns: https://jakarta.ee/xml/ns/jakartaee
     value: "{{ item.value }}"
     pretty_print: true
     state: present
