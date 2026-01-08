@@ -1,6 +1,6 @@
 ---
 
-# Copyright 2025 Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
+# Copyright 2026 Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Confluence release.
-confluence_release: "10.1"
+confluence_release: "10.2"
 
 # Confluence version.
 confluence_version: "{{ _confluence_version[confluence_release] }}"
