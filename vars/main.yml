@@ -15,6 +15,6 @@
 # limitations under the License.
 
 _confluence_version:
-  "10.2": 10.2.3
-  "9.2": 9.2.14
+  "10.2": 10.2.6
+  "9.2": 9.2.15
   "8.5": 8.5.31
