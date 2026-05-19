@@ -13,6 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- name: prepare directories
+  ansible.builtin.file:
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0755') }}"
+    state: "{{ item.state | default('directory') }}"
+  loop:
+    - { dest: /etc/apt/keyrings }
+    - { dest: /usr/share/keyrings }
+
 - name: apt-key add
   vars:
     ansible_python_interpreter: "python3"
@@ -25,6 +36,8 @@
   loop: "{{ _apt_key }}"
   register: result
   until: result is succeeded
+  tags:
+    - _apt_key
 
 - name: apt-add-repository
   ansible.builtin.deb822_repository:
@@ -40,6 +53,8 @@
   loop: "{{ _deb822_repository }}"
   register: result
   until: result is succeeded
+  tags:
+    - _deb822_repository
 
 - name: apt-get update
   ansible.builtin.apt:
@@ -54,6 +69,8 @@
   when: item.state == "present"
   changed_when: false
   failed_when: false
+  tags:
+    - _apt
 
 - name: apt-get install
   ansible.builtin.apt:
@@ -64,6 +81,8 @@
   until: result is succeeded
   notify:
     - confluence | systemctl restart confluence.service
+  tags:
+    - _apt
 
 - name: apt-mark hold
   ansible.builtin.dpkg_selections:
@@ -73,3 +92,5 @@
   when: item.state == "present"
   changed_when: false
   failed_when: false
+  tags:
+    - _apt

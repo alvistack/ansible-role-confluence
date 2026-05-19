@@ -18,7 +18,7 @@
 confluence_release: "10.2"
 
 # Confluence version.
-confluence_version: "{{ _confluence_version[confluence_release] }}"
+confluence_version: "{{ _confluence_version }}"
 
 # Owner and group for Confluence.
 confluence_owner: confluence
