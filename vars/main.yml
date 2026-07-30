@@ -16,5 +16,5 @@
 
 _confluence_version: "{{ __confluence_version[confluence_release] }}"
 __confluence_version:
-  "10.2": 10.2.13
-  "9.2": 9.2.21
+  "10.2": 10.2.14
+  "9.2": 9.2.22
