@@ -1,7 +1,11 @@
 # Ansible Role for Confluence
 
-## 15.0.0 - TBC
+## 15.1.0 - TBC
 
+## 15.0.0 - 2026-11-22
+
+- Support Ansible community package 15.0.0
+- Support Ansible community package 14.6.0
 - Support Ubuntu 26.10
 - Remove Ubuntu 25.10 support
 
